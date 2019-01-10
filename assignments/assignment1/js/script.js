@@ -138,6 +138,8 @@ function displayFood() {
 function positionFood() {
   food.x = random(0,width);
   food.y = random(0,height);
+  food.vx = random(-food.v_max, food.v_max);
+  food.vy = random(-food.v_max, food.v_max);
 }
 
 
