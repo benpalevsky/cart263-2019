@@ -5,6 +5,9 @@
 Circle Eater
 Pippin Barr
 
+Assignment 1 Remix by
+Ben Palevsky
+
 A simple game in which the player controls a shrinking circle with their mouse and tries
 to overlap another circle (food) in order to grow bigger.
 
