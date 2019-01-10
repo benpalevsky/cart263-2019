@@ -147,4 +147,8 @@ function updateFood() {
   food.x += food.vx;
   food.y += food.vy;
 
+  if (frameCount % 60 == 0){
+    food.vx = random(-food.v_max, food.v_max);
+    food.vy = random(-food.v_max, food.v_max);
+  }
 }
