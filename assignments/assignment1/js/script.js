@@ -144,5 +144,7 @@ function positionFood() {
 //
 // Update's the foods position as defined by simple kinematics
 function updateFood() {
+  food.x += food.vx;
+  food.y += food.vy;
 
 }
