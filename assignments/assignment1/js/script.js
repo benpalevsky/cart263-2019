@@ -147,11 +147,28 @@ function positionFood() {
 //
 // Update's the foods position as defined by simple kinematics
 function updateFood() {
+  //simple kinematics
   food.x += food.vx;
   food.y += food.vy;
 
+  //random velocity every 60 frames
   if (frameCount % 60 == 0){
     food.vx = random(-food.v_max, food.v_max);
     food.vy = random(-food.v_max, food.v_max);
   }
+
+  //worldwrap
+  if (food.x > windowWidth){
+    food.x = 0;
+  }
+  else if (food.x < 0){
+    food.x = windowWidth;
+  }
+  if (food.y > windowHeight){
+    food.y = 0;
+  }
+  else if (food.y < 0){
+    food.y = windowHeight;
+  }
+
 }
