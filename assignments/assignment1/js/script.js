@@ -138,3 +138,11 @@ function positionFood() {
   food.x = random(0,width);
   food.y = random(0,height);
 }
+
+
+// updateFood()
+//
+// Update's the foods position as defined by simple kinematics
+function updateFood() {
+
+}
