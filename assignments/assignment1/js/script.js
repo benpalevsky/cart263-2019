@@ -14,7 +14,7 @@ to overlap another circle (food) in order to grow bigger.
 const AVATAR_SIZE_GAIN = 50;
 const AVATAR_SIZE_LOSS = 1;
 
-const FOOD_MAX_SPEED = 1;
+const FOOD_MAX_SPEED = 10;
 
 // Avatar is an object defined by its properties
 let avatar = {
@@ -75,6 +75,7 @@ function draw() {
   checkCollision();
   displayAvatar();
   displayFood();
+  updateFood();
 }
 
 // updateAvatar()
