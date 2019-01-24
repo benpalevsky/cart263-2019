@@ -26,6 +26,8 @@ class Food extends Agent {
   reset() {
     this.x = random(0,width);
     this.y = random(0,height);
+    this.vx = random(-maxSpeed,maxSpeed);
+    this.vy = random(-maxSpeed,maxSpeed);
     this.size = random(this.minSize,this.maxSize);
   }
 
