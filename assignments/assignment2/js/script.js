@@ -17,6 +17,7 @@ const AVATAR_MAX_SIZE = 64;
 const AVATAR_SIZE_LOSS_PER_FRAME = 1;
 const FOOD_MIN_SIZE = 5;
 const FOOD_MAX_SIZE = 100;
+const FOOD_MAX_SPEED = 6;
 
 // Variables to store the two key objects
 let avatar;
