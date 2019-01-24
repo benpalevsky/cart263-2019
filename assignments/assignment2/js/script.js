@@ -21,7 +21,7 @@ const FOOD_MAX_SPEED = 6;
 
 // Variables to store the two key objects
 let avatar;
-let food;
+let food = [];
 
 
 // preload()
