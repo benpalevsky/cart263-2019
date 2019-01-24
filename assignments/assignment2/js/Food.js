@@ -30,6 +30,8 @@ class Food extends Agent {
   }
 
   update(){
-    
+    constrain(this.x += this.vx, 0, windowWidth);
+    constrain(this.y += this.vy, 0, windowHeight);
+
   }
 }
