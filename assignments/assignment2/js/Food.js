@@ -28,4 +28,8 @@ class Food extends Agent {
     this.y = random(0,height);
     this.size = random(this.minSize,this.maxSize);
   }
+
+  update(){
+    
+  }
 }
