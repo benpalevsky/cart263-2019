@@ -33,5 +33,10 @@ class Food extends Agent {
     constrain(this.x += this.vx, 0, windowWidth);
     constrain(this.y += this.vy, 0, windowHeight);
 
+    if (frameCount % 60 == 0){
+      this.vx = random(-maxSpeed,maxSpeed);
+      this.vy = random(-maxSpeed,maxSpeed);
+    }
+
   }
 }
