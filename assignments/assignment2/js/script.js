@@ -60,4 +60,5 @@ function draw() {
   }
   avatar.display();
   food.display();
+  food.update();
 }
