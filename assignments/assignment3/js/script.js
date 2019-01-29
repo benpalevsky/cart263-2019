@@ -9,12 +9,14 @@ author, and this description to match your project!
 ******************/
 
 var $spans;
-var secretsFound;
+var $secretCounter;
+var secretsFound = 0;
 
 $(document).ready(setup);
 
 function setup() {
   $spans = $("span");
+  $secretCounter = $("#secret-count");
   setInterval(update, 500);
 }
 
@@ -49,5 +51,6 @@ function spanMouseOver() {
     $(this).addClass("found");
     $(this).off("mouseover");
     secretsFound++;
+    $secretCounter.html("Secrets Found: " + secretsFound);
   }
 }
