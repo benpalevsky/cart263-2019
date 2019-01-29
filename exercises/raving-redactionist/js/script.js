@@ -8,12 +8,19 @@ author, and this description to match your project!
 
 ******************/
 
-$(document).ready(setInterval(update, 500));
+var $spans;
+
+$(document).ready(setup);
+
+function setup() {
+  $spans = $("span");
+  setInterval(update, 500);
+}
 
 function update() {
   console.log("Update!");
-  $("span").each(updateSpans);
-  $("span").on("click", spanClicked);
+  $spans.each(updateSpans);
+  $spans.on("click", spanClicked);
 }
 
 function updateSpans() {
