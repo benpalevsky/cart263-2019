@@ -12,8 +12,10 @@ $(document).ready(setInterval(update, 500));
 
 function update() {
   console.log("Update!");
+  var $spans = $("span").each(updateSpans);
 }
 
 function updateSpans() {
+  console.log("Updating spans!");
 
 }
