@@ -36,10 +36,11 @@ div
 
 .secret
 {
-    color: #82d173;
+    color: #abfaa9;
 }
 
 .found
 {
     color: #abfaa9;
+    background-color: #828273;
 }
