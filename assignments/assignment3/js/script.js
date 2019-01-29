@@ -51,6 +51,6 @@ function spanMouseOver() {
     $(this).addClass("found");
     $(this).off("mouseover");
     secretsFound++;
-    $secretCounter.html("Secrets Found: " + secretsFound);
+    $secretCounter.text("Secrets Found: " + secretsFound);
   }
 }
