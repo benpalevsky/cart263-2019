@@ -21,6 +21,7 @@ function setup() {
 function update() {
   $spans.each(updateSpans);
   $spans.on("click", spanClicked);
+  $spans.on("mouseover", spanMouseOver);
 }
 
 function updateSpans() {
@@ -40,4 +41,8 @@ function spanClicked() {
     $(this).removeClass("revealed");
     $(this).addClass("redacted");
   }
+}
+
+function spanMouseOver() {
+
 }
