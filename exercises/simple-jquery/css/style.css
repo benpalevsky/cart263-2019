@@ -1,0 +1,20 @@
+/*********************************************
+
+Here is a description of any special CSS used.
+In this case it's just padding and margin to 0
+so the canvas is flush with the top left corner.
+
+**********************************************/
+
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+div
+{
+    font-size: 2em;
+
+    margin-bottom: 20px;
+}

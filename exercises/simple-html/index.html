@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="style.css"/>
+
+<h1>Welcome to my homepage!</h1>
+<div id="greeting">
+  I'm so
+  <span id="reaction">pleased</span>
+  to see you!
+</div>
+<div>
+  Want to know something?
+  <a href="http://www.google.com">Google</a>
+  it! Ha ha ha!
+  <script>
+    "use strict";
+    window.onload = setup;
+
+    function setup() {
+      let reaction = document.getElementById("reaction");
+      reaction.innerText = "surprised";
+      let divs = document.getElementsByTagName("div");
+      for (let i = 0; i < divs.length; i++) {
+        divs[i].style.color = '#ff0000';
+      }
+      reaction.addEventListener('click', reactionClicked);
+    }
+
+    function reactionClicked(e) {
+      e.target.innerText = "depressed";
+    }
+  </script>
+
+</div>
