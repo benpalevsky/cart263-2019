@@ -13,6 +13,7 @@ $(document).ready(setInterval(update, 500));
 function update() {
   console.log("Update!");
   $("span").each(updateSpans);
+  $("span").on("click", spanClicked);
 }
 
 function updateSpans() {
@@ -24,4 +25,9 @@ function updateSpans() {
     $(this).addClass("revealed");
   }
 
+}
+
+function spanClicked() {
+  $(this).removeClass("revealed");
+  $(this).addClass("redacted");
 }
