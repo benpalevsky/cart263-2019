@@ -44,5 +44,9 @@ function spanClicked() {
 }
 
 function spanMouseOver() {
-
+  if ($(this).hasClass("secret")) {
+    $(this).removeClass("secret");
+    $(this).addClass("found");
+    secretsFound++;
+  }
 }
