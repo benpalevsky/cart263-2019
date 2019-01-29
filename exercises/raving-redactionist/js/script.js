@@ -13,3 +13,7 @@ $(document).ready(setInterval(update, 500));
 function update() {
   console.log("Update!");
 }
+
+function updateSpans() {
+
+}
