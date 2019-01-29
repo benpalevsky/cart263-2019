@@ -9,6 +9,7 @@ author, and this description to match your project!
 ******************/
 
 var $spans;
+var secretsFound;
 
 $(document).ready(setup);
 
