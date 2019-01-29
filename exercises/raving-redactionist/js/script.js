@@ -12,10 +12,16 @@ $(document).ready(setInterval(update, 500));
 
 function update() {
   console.log("Update!");
-  var $spans = $("span").each(updateSpans);
+  $("span").each(updateSpans);
 }
 
 function updateSpans() {
   console.log("Updating spans!");
+  var r = Math.random();
+
+  if (r < 0.1) {
+    $(this).removeClass("redacted");
+    $(this).addClass("revealed");
+  }
 
 }
