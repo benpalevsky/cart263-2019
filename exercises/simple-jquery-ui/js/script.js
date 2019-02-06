@@ -9,12 +9,10 @@ author, and this description to match your project!
 ******************/
 
 
-var $spans;
 
 $(document).ready(setup);
 
 function setup() {
-  $spans = $("span");
   setInterval(update, 500);
 }
 
