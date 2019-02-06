@@ -22,13 +22,18 @@ function setup() {
         .find("p")
         .html("Dropped!");
       ui.draggable.remove();
+      setInterval(chew, 500);
     }
   });
   $fly = $("#fly");
   $fly.draggable();
-  setInterval(update, 500);
 }
 
-function update() {
+function chew() {
 
+  if ($mouth.attr("src") == "assets/images/mouth-open.png") {
+    $mouth.attr("src", "assets/images/mouth-closed.png");
+  } else if ($mouth.attr("src") == "assets/images/mouth-closed.png") {
+    $mouth.attr("src", "assets/images/mouth-open.png");
+  }
 }
