@@ -15,7 +15,14 @@ $(document).ready(setup);
 
 function setup() {
   $mouth = $("#mouth");
-  $mouth.droppable();
+  $mouth.droppable({
+    drop: function(event, ui) {
+      $(this)
+        .addClass("ui-state-highlight")
+        .find("p")
+        .html("Dropped!");
+    }
+  });
   $fly = $("#fly");
   $fly.draggable();
   setInterval(update, 500);
