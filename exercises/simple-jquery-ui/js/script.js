@@ -15,6 +15,7 @@ $(document).ready(setup);
 
 function setup() {
   $mouth = $("#mouth");
+  $mouth.droppable();
   $fly = $("#fly");
   $fly.draggable();
   setInterval(update, 500);
