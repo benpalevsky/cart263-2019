@@ -7,3 +7,17 @@ This is a template. You must fill in the title,
 author, and this description to match your project!
 
 ******************/
+
+
+var $spans;
+
+$(document).ready(setup);
+
+function setup() {
+  $spans = $("span");
+  setInterval(update, 500);
+}
+
+function update() {
+
+}
