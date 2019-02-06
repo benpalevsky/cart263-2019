@@ -17,10 +17,6 @@ function setup() {
   $mouth = $("#mouth");
   $mouth.droppable({
     drop: function(event, ui) {
-      $(this)
-        .addClass("ui-state-highlight")
-        .find("p")
-        .html("Dropped!");
       ui.draggable.remove();
       setInterval(chew, 500);
     }
