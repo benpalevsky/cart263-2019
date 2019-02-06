@@ -21,6 +21,7 @@ function setup() {
         .addClass("ui-state-highlight")
         .find("p")
         .html("Dropped!");
+      ui.draggable.remove();
     }
   });
   $fly = $("#fly");
