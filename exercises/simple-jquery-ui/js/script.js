@@ -14,6 +14,8 @@ var $fly;
 $(document).ready(setup);
 
 function setup() {
+  $mouth = $("mouth");
+  $fly = $("fly");
   setInterval(update, 500);
 }
 
