@@ -8,7 +8,8 @@ author, and this description to match your project!
 
 ******************/
 
-
+var $mouth;
+var $fly;
 
 $(document).ready(setup);
 
