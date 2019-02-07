@@ -40,18 +40,27 @@ let dialogues = [
 
 $(document).ready(setup);
 
+
+
 var $moodboard;
 var styles = {
   "height": "120",
-  "position": "fixed",
+  "position": "absolute !important",
   "bottom": 0,
   "width": "100%",
   "background-color": "#FFFFFF",
-  "opacity": 1
+  "opacity": 1,
+  "z-index:": -1
 };
 
 function setup() {
   setInterval(update, 500);
+
+  $('#wrapper').tubular({
+    // The plugin takes various options, but in this case we'll just give it
+    // the video ID of the YouTube video we want.
+    videoId: 'QcmJlXeyGxU?iv_load_policy=3'
+  });
 
   $moodboard = $("#moodboard");
   $moodboard.css(styles);
@@ -59,7 +68,7 @@ function setup() {
   let index = [Math.floor(Math.random() * moods.length)];
 
   let $dialog = $('<div></div>');
-  $dialog.attr('title', 'Sisyphus is ' + moods[index]);
+  $dialog.attr('title', 'Sisyphus:');
   $dialog.append("<p>" + dialogues[index] + "</p>");
   // Finally, add the div to the page
   $('body').append($dialog);
