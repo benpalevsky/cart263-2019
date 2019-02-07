@@ -9,9 +9,9 @@ Author: Ben Palevsky
 ******************/
 
 let moods = [
-  "Happy",
+  "Happy 😀",
   "Sad",
-  "Star Struck",
+  "Star Struck 😎",
   "In Love",
   "Whispering",
   "Lying",
