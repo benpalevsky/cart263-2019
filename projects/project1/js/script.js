@@ -46,18 +46,21 @@ var $moodboard;
 var styles = {
   "height": "120",
   "position": "absolute !important",
-  "bottom": 0,
+  "left": "100px",
+  "top": "100px",
   "width": "100%",
-  "background-color": "#FFFFFF",
+  "background-color": "#c0c0c0",
   "opacity": 1,
   "z-index:": -1
 };
 
 var selValue;
-
+var $sys;
+var $smiley;
 
 function setup() {
   setInterval(update, 500);
+
 
   $moodboard = $("#moodboard");
   $moodboard.css(styles);
@@ -68,19 +71,28 @@ function setup() {
   $dialog.attr('title', 'Sisyphus:');
   $dialog.append("<p>" + dialogues[index] + "</p>");
 
-  let $dialog2 = $('<div><class = myPosition></div>');
-  $dialog2.attr('title', 'Moodboard:');
-  $dialog2.append("<p>" + dialogues[index] + "</p>");
-
   selValue = $('input[name=selector]:checked').val();
   // Finally, add the div to the page
-  $('body').append($dialog);
   $dialog.dialog();
-  $dialog2.dialog();
+
+  $dialog.parent().offset({
+    top: 140,
+    left: 300
+  });
+
+  $sys = $(".big-img");
+  $smiley = $(".small-img");
+
+  $smiley.offset({
+    top: 120,
+    left: 230
+  })
+
 
 }
 
 
 function update() {
+
 
 }
