@@ -55,30 +55,41 @@ function setup() {
   $moodboard = $("input");
   $moodboard.checkboxradio();
 
-  let index = [Math.floor(Math.random() * moods.length)];
+  let index = 0;
 
   let $dialog = $('<div></div>');
   $dialog.attr('title', 'Sisyphus:');
-  $dialog.append("<p>" + dialogues[index] + "</p>");
 
   selValue = $('input[name=selector]:checked').val();
   // Finally, add the div to the page
-  $dialog.dialog();
 
-  $dialog.parent().offset({
-    top: 140,
-    left: 300
-  });
+
 
   $sys = $(".big-img");
   $smiley = $(".small-img");
-  index++;
   $smiley.attr("src", "assets/images/emojis/" + index + ".png");
 
   $smiley.offset({
     top: 120,
     left: 230
   })
+
+
+  $(function() {
+    $('input[type="radio"]').click(function() {
+      if ($(this).is(':checked')) {
+        let index = $(this).attr("id").substring(6);
+        $smiley.attr("src", "assets/images/emojis/" + index + ".png");
+        $dialog.html("");
+        $dialog.append("<p>" + dialogues[index - 1] + "</p>");
+        $dialog.dialog();
+        $dialog.parent().offset({
+          top: 140,
+          left: 300
+        });
+      }
+    });
+  });
 
 
 }
