@@ -59,16 +59,15 @@ var selValue;
 function setup() {
   setInterval(update, 500);
 
-
   $moodboard = $("#moodboard");
   $moodboard.css(styles);
 
   let index = [Math.floor(Math.random() * moods.length)];
 
-  let $dialog = $('<div></div>');
-  $dialog.attr('title', 'Sisyphus:');
-  $dialog.append("<p>" + dialogues[index] + "</p>");
-  $dialog.append($moodboard);
+  // let $dialog = $('<div></div>');
+  // $dialog.attr('title', 'Sisyphus:');
+  // $dialog.append("<p>" + dialogues[index] + "</p>");
+  // $dialog.append($moodboard);
 
   selValue = $('input[name=selector]:checked').val();
   // Finally, add the div to the page
