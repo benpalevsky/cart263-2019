@@ -54,6 +54,7 @@ function setup() {
 
   $moodboard = $("input");
   $moodboard.checkboxradio();
+  $moodboard.fadeIn(400);
 
   let index = 0;
 
@@ -67,9 +68,12 @@ function setup() {
 
   $sys = $(".big-img");
   $sys.css("visibility", "visible");
+
   $smiley = $(".small-img");
-  $smiley.css("visibility", "visible");
   $smiley.attr("src", "assets/images/emojis/" + index + ".png");
+  $smiley.css("visibility", "visible");
+
+
 
   $smiley.offset({
     top: 120,
@@ -85,7 +89,10 @@ function setup() {
         $dialog.html("");
         $dialog.append("<p>" + dialogues[index - 1] + "</p>");
         $dialog.dialog({
-          modal: true
+          modal: true,
+          close: function() {
+            $smiley.attr("src", "assets/images/emojis/0.png");
+          }
         });
         $dialog.parent().offset({
           top: 140,
