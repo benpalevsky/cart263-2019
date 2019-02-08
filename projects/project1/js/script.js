@@ -68,21 +68,18 @@ function setup() {
   $dialog.attr('title', 'Sisyphus:');
   $dialog.append("<p>" + dialogues[index] + "</p>");
 
-  let $dialog2 = $('<div></div>');
-  $dialog2.attr('title', 'Sisyphus:');
+  let $dialog2 = $('<div><class = myPosition></div>');
+  $dialog2.attr('title', 'Moodboard:');
   $dialog2.append("<p>" + dialogues[index] + "</p>");
 
   selValue = $('input[name=selector]:checked').val();
   // Finally, add the div to the page
   $('body').append($dialog);
-  $dialog.dialog().position({
-    my: 'left',
-    at: '300px',
-    of: $("#emoji").position()
-  });
-  //$dialog2.dialog();
-  $dialog2.checkboxradio();
+  $dialog.dialog();
+  $dialog2.dialog();
+
 }
+
 
 function update() {
 

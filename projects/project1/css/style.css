@@ -1,9 +1,4 @@
-.wrapper
-{
-    position: relative;
 
-    display: inline-block;
-}
 .big-img
 {
     display: block;
@@ -19,13 +14,8 @@
     right: 35%;
 }
 
+
 body
 {
     background-color: #c0c0c0;
-}
-
-#moodboard
-{
-    position: relative;
-    bottom: 100%;
 }
