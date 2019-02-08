@@ -8,19 +8,6 @@ Author: Ben Palevsky
 
 ******************/
 
-let moods = [
-  "Happy 😀",
-  "Sad",
-  "Star Struck 😎",
-  "In Love",
-  "Whispering",
-  "Lying",
-  "Embarassed",
-  "Cold",
-  "Hot",
-  "Crazy",
-  "In the loop"
-];
 
 let dialogues = [
   "Sometimes you wake up with a smile on your face :) ",
