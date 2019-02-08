@@ -6,7 +6,17 @@ This is the style file for this project.
 
 .marginauto
 {
+    position: relative;
+
     display: block;
+    float: center;
 
     margin: 10px auto 20px;
+
+    border: 5px solid blue;
+}
+
+body
+{
+    background-color: #c0c0c0;
 }
