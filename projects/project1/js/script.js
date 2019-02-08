@@ -10,17 +10,17 @@ Author: Ben Palevsky
 
 
 let dialogues = [
-  "Sometimes you wake up with a smile on your face :) ",
-  "I wish I could see my wife and family :(",
-  "I can't believe that Ares actually noticed me!! *u*",
-  "I can't stop thinking about my beautiful wife!",
-  "Please be quiet ... cereberus is sleeping",
-  "Sisyphus? No, haven't heard of him.",
-  "I did tie Hades up ... didn't I? Oh bother ...",
-  "The underworld is SO COLD this time of year! ",
-  "Hell is HOT!! Who would have guessed?",
-  "I'm off my ROCK-er! ",
-  "This boulder isn't actually heavy ;) "
+  "Sometimes you wake up with a smile on your face 😃",
+  "I wish I could see my wife and family 🙁",
+  "I can't believe that Ares actually noticed me!! 🤑",
+  "I can't stop thinking about my beautiful wife! 😍",
+  "Please be quiet ... cereberus is sleeping 😶",
+  "Sisyphus? No, haven't heard of him. 🚣",
+  "I did tie Hades up ... didn't I? Oh bother ... 😳",
+  "The underworld is SO COLD this time of year! 💦",
+  "Hell is HOT!! Who would have guessed? 👿",
+  "I'm off my ROCK-er! 😜",
+  "This boulder isn't actually heavy 😉",
 ]
 
 
