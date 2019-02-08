@@ -6,6 +6,8 @@ Project 1: Happiness is Sisyphus?
 Title: Sisyphus is Happy
 Author: Ben Palevsky
 
+Sounds from http://www.zbogucki.com/portfolio/dialogue-generator/
+
 ******************/
 
 
@@ -86,6 +88,9 @@ function setup() {
   $(function() {
     $('input[type="radio"]').click(function() {
       if ($(this).is(':checked')) {
+        let soundIndex = (Math.floor(Math.random() * Math.floor(7))) + 1;
+        let mySound = new Audio("assets/sounds/" + soundIndex + ".wav");
+        mySound.play();
         let index = $(this).attr("id").substring(6);
         $smiley.attr("src", "assets/images/emojis/" + index + ".png");
         $dialog.html("");
