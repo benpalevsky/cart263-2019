@@ -66,7 +66,9 @@ function setup() {
 
 
   $sys = $(".big-img");
+  $sys.css("visibility", "visible");
   $smiley = $(".small-img");
+  $smiley.css("visibility", "visible");
   $smiley.attr("src", "assets/images/emojis/" + index + ".png");
 
   $smiley.offset({
@@ -82,11 +84,14 @@ function setup() {
         $smiley.attr("src", "assets/images/emojis/" + index + ".png");
         $dialog.html("");
         $dialog.append("<p>" + dialogues[index - 1] + "</p>");
-        $dialog.dialog();
+        $dialog.dialog({
+          modal: true
+        });
         $dialog.parent().offset({
           top: 140,
           left: 300
         });
+        $('.ui-widget-overlay').css('background', "transparent"); //write background color change code here
       }
     });
   });

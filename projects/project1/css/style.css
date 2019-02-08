@@ -4,6 +4,7 @@
     position: absolute;
 
     display: block;
+    visibility: hidden;
 
     width: auto;
     margin-right: auto;
@@ -12,6 +13,8 @@
 .small-img
 {
     position: absolute;
+
+    visibility: hidden;
 
     width: 50px;
 }
