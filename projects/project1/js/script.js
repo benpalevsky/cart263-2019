@@ -43,16 +43,6 @@ $(document).ready(setup);
 
 
 var $moodboard;
-var styles = {
-  "height": "120",
-  "position": "absolute !important",
-  "left": "100px",
-  "top": "100px",
-  "width": "100%",
-  "background-color": "#c0c0c0",
-  "opacity": 1,
-  "z-index:": -1
-};
 
 var selValue;
 var $sys;
@@ -62,8 +52,8 @@ function setup() {
   setInterval(update, 500);
 
 
-  $moodboard = $("#moodboard");
-  $moodboard.css(styles);
+  $moodboard = $("input");
+  $moodboard.checkboxradio();
 
   let index = [Math.floor(Math.random() * moods.length)];
 
@@ -82,6 +72,8 @@ function setup() {
 
   $sys = $(".big-img");
   $smiley = $(".small-img");
+  index++;
+  $smiley.attr("src", "assets/images/emojis/" + index + ".png");
 
   $smiley.offset({
     top: 120,

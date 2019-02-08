@@ -22,9 +22,14 @@ body
     background-color: #c0c0c0;
 }
 
-#moodboard
+.moodboard
 {
-    position: left;
-    top: 35%;
-    right: 35%;
+    font-size: .5em;
+
+    position: absolute;
+    top: 400px;
+
+    width: 400px;
+
+    text-align: right;
 }
