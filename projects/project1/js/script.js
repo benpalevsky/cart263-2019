@@ -53,6 +53,9 @@ var styles = {
   "z-index:": -1
 };
 
+var selValue;
+
+
 function setup() {
   setInterval(update, 500);
 
@@ -70,6 +73,9 @@ function setup() {
   let $dialog = $('<div></div>');
   $dialog.attr('title', 'Sisyphus:');
   $dialog.append("<p>" + dialogues[index] + "</p>");
+  $dialog.append($moodboard);
+
+  selValue = $('input[name=selector]:checked').val();
   // Finally, add the div to the page
   $('body').append($dialog);
   $dialog.dialog();

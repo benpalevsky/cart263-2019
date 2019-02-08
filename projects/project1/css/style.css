@@ -3,3 +3,10 @@
 This is the style file for this project.
 
 **********************************************/
+
+.marginauto
+{
+    display: block;
+
+    margin: 10px auto 20px;
+}
