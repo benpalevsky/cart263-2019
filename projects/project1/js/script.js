@@ -59,11 +59,6 @@ var selValue;
 function setup() {
   setInterval(update, 500);
 
-  $('#wrapper').tubular({
-    // The plugin takes various options, but in this case we'll just give it
-    // the video ID of the YouTube video we want.
-    videoId: 'QcmJlXeyGxU?iv_load_policy=3'
-  });
 
   $moodboard = $("#moodboard");
   $moodboard.css(styles);
