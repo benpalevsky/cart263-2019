@@ -64,16 +64,24 @@ function setup() {
 
   let index = [Math.floor(Math.random() * moods.length)];
 
-  // let $dialog = $('<div></div>');
-  // $dialog.attr('title', 'Sisyphus:');
-  // $dialog.append("<p>" + dialogues[index] + "</p>");
-  // $dialog.append($moodboard);
+  let $dialog = $('<div></div>');
+  $dialog.attr('title', 'Sisyphus:');
+  $dialog.append("<p>" + dialogues[index] + "</p>");
+
+  let $dialog2 = $('<div></div>');
+  $dialog2.attr('title', 'Sisyphus:');
+  $dialog2.append("<p>" + dialogues[index] + "</p>");
 
   selValue = $('input[name=selector]:checked').val();
   // Finally, add the div to the page
   $('body').append($dialog);
-  $dialog.dialog();
-  $("input").checkboxradio();
+  $dialog.dialog().position({
+    my: 'left',
+    at: '300px',
+    of: $("#emoji").position()
+  });
+  //$dialog2.dialog();
+  $dialog2.checkboxradio();
 }
 
 function update() {
