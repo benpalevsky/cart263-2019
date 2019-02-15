@@ -10,6 +10,7 @@ author, and this description to match your project!
 
 var $mouth;
 var $fly;
+var $shrimp;
 
 var $buzzSound
 var $crunchSound
@@ -20,6 +21,8 @@ function setup() {
   $buzzSound = $("#buzz");
   $crunchSound = $("#crunch");
 
+  $shrimp = $('#shrimp');
+  $shrimp.draggable();
 
   $fly = $("#fly");
   $fly.draggable();
