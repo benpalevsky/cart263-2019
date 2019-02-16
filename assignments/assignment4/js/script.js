@@ -12,17 +12,29 @@ var $mouth;
 var $fly;
 var $shrimp;
 
-var $buzzSound
-var $crunchSound
+var $buzzSound;
+var $crunchSound;
+var $yuckSound;
 
 $(document).ready(setup);
 
 function setup() {
   $buzzSound = $("#buzz");
   $crunchSound = $("#crunch");
+  $yuckSound = $("#yuck");
 
   $shrimp = $('#shrimp');
-  $shrimp.draggable();
+  $shrimp.draggable({
+    revert: "invalid"
+  });
+
+  $shrimp.mousedown(function() {
+    $yuckSound[0].play();
+  });
+
+  $shrimp.mouseup(function() {
+    $yuckSound[0].pause();
+  });
 
   $fly = $("#fly");
   $fly.draggable();
