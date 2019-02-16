@@ -36,6 +36,7 @@ function setup() {
 
   $mouth = $("#mouth");
   $mouth.droppable({
+    accept: '#fly',
     drop: function(event, ui) {
       ui.draggable.remove();
       setInterval(chew, 500);
