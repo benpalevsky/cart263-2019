@@ -25,7 +25,7 @@ function setup() {
 
   $shrimp = $('#shrimp');
   $shrimp.draggable({
-    revert: "invalid"
+    revert: true
   });
 
   $shrimp.mousedown(function() {
