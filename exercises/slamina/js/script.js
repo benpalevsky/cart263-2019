@@ -154,4 +154,8 @@ let options = {
 
 function setup() {
   responsiveVoice.speak("hello", "UK English Male", options);
+
+  $("#ClickToBegin").click(function() {
+    alert("Handler for .click() called.");
+  });
 }
