@@ -197,9 +197,11 @@ function newRound() {
     correctAnimal = answers[Math.floor((Math.random() * answers.length))];
   }
 
+  speakAnimal(correctAnimal);
 
 }
 
 function speakAnimal(animal) {
   let reverseAnimal = animal.split('').reverse().join('');
+  responsiveVoice.speak(reverseAnimal, "UK English Male");
 }
