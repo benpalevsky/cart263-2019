@@ -150,8 +150,8 @@ let correctAnimal;
 const NUM_OPTIONS = 5;
 
 let options = {
-  rate: Math.random(),
-  rate: Math.random()
+  rate: Math.random() * 2,
+  rate: Math.random() * 2
 };
 
 $(document).ready(setup);
