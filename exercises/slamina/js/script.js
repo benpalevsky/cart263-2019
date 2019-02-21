@@ -149,6 +149,10 @@ let answers = [];
 let correctAnimal;
 const NUM_OPTIONS = 5;
 
+let options = {
+  rate: Math.random(),
+  rate: Math.random()
+};
 
 $(document).ready(setup);
 
@@ -203,5 +207,5 @@ function newRound() {
 
 function speakAnimal(animal) {
   let reverseAnimal = animal.split('').reverse().join('');
-  responsiveVoice.speak(reverseAnimal, "UK English Male");
+  responsiveVoice.speak(reverseAnimal, "UK English Male", options);
 }
