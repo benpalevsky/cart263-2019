@@ -183,6 +183,8 @@ function addButton(label) {
       setTimeout(newRound, 3000);
     } else {
       console.log("Wrong!");
+      $(this).effect("shake");
+      speakAnimal(correctAnimal);
     }
   });
 
