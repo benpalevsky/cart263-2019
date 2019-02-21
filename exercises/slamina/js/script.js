@@ -168,9 +168,7 @@ function setup() {
 }
 
 function startGame() {
-  for (i = 0; i < NUM_OPTIONS; i++) {
-    addButton(animals[Math.floor((Math.random() * animals.length))]);
-  }
+  newRound();
 }
 
 //the buttons also have the logic for the animals in them
@@ -193,4 +191,13 @@ function addButton(label) {
 
 function newRound() {
   answers = [];
+
+  for (i = 0; i < NUM_OPTIONS; i++) {
+    let currentAnimal = animals[Math.floor((Math.random() * animals.length))];
+    addButton(currentAnimal);
+    answers.push(currentAnimal);
+
+    correctAnimal = answers[Math.floor((Math.random() * answers.length))];
+  }
+
 }
