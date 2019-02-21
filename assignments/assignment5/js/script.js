@@ -156,6 +156,20 @@ let options = {
 
 $(document).ready(setup);
 
+if (annyang) {
+  // Let's define our first command. First the text we expect, and then the function it should call
+  var commands = {
+    'i give up': function() {
+      correctGuess();
+    }
+  };
+
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+}
 
 function setup() {
 
@@ -179,7 +193,7 @@ function addButton(label) {
     if ($(this).text() === correctAnimal) {
       correctGuess();
     } else {
-      incorrectGuess();
+      incorrectGuess($(this));
     }
   });
 
@@ -208,9 +222,9 @@ function correctGuess() {
   setTimeout(newRound, 3000);
 }
 
-function incorrectGuess() {
+function incorrectGuess(button) {
   console.log("Wrong!");
-  $(this).effect("shake");
+  button.effect("shake");
   speakAnimal(correctAnimal);
 }
 
