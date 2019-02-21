@@ -168,7 +168,9 @@ function setup() {
 }
 
 function startGame() {
-  addButton("Doggy");
+  for (i = 0; i < NUM_OPTIONS; i++) {
+    addButton(animals[Math.floor((Math.random() * animals.length))]);
+  }
 }
 
 //the buttons also have the logic for the animals in them
