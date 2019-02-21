@@ -152,6 +152,8 @@ let options = {
   pitch: 2
 };
 
+let correctAnimal;
+
 function setup() {
   responsiveVoice.speak("hello", "UK English Male", options);
 
@@ -162,5 +164,5 @@ function setup() {
 }
 
 function startGame() {
-  alert("Handler for .click() called.");
+  alert("Starting the game!");
 }
