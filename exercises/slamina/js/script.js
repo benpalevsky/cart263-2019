@@ -152,14 +152,9 @@ const NUM_OPTIONS = 5;
 
 $(document).ready(setup);
 
-let options = {
-  rate: 0.5,
-  pitch: 2
-};
 
 
 function setup() {
-  responsiveVoice.speak("hello", "UK English Male", options);
 
   $("#ClickToBegin").click(function() {
     $("#ClickToBegin").remove();
@@ -202,4 +197,9 @@ function newRound() {
     correctAnimal = answers[Math.floor((Math.random() * answers.length))];
   }
 
+
+}
+
+function speakAnimal(animal) {
+  let reverseAnimal = animal.split('').reverse().join('');
 }
