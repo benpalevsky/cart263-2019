@@ -180,6 +180,8 @@ function addButton(label) {
   $guess.on('click', function() {
     if ($(this).text() === correctAnimal) {
       console.log("Correct!");
+      $('.guess').remove();
+      setTimeout(function() {}, 1000);
     } else {
       console.log("Wrong!");
     }
