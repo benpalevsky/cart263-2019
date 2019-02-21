@@ -145,6 +145,7 @@ let animals = [
   "zebra"
 ];
 
+
 $(document).ready(setup);
 
 let options = {
@@ -164,9 +165,12 @@ function setup() {
 }
 
 function startGame() {
-  alert("Starting the game!");
+  addButton("Doggy");
 }
 
 function addButton(label) {
+  let $guess = $('<div class = guess></div>');
+  $guess.text(label);
+  $guess.button();
 
 }
