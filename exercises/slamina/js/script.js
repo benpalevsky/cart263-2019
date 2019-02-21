@@ -156,6 +156,11 @@ function setup() {
   responsiveVoice.speak("hello", "UK English Male", options);
 
   $("#ClickToBegin").click(function() {
-    alert("Handler for .click() called.");
+    $("#ClickToBegin").remove();
+    startGame();
   });
+}
+
+function startGame() {
+  alert("Handler for .click() called.");
 }
