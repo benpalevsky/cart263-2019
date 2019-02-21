@@ -145,6 +145,10 @@ let animals = [
   "zebra"
 ];
 
+let answers = [];
+let correctAnimal;
+const NUM_OPTIONS = 5;
+
 
 $(document).ready(setup);
 
@@ -153,7 +157,6 @@ let options = {
   pitch: 2
 };
 
-let correctAnimal;
 
 function setup() {
   responsiveVoice.speak("hello", "UK English Male", options);
@@ -168,9 +171,21 @@ function startGame() {
   addButton("Doggy");
 }
 
+//the buttons also have the logic for the animals in them
 function addButton(label) {
+
   let $guess = $('<div class = guess></div>');
   $guess.text(label);
   $guess.button();
+  $guess.on('click', function() {
+    if ($(this).text() === correctAnimal) {
+      console.log("Correct!");
+    } else {
+      console.log("Wrong!");
+    }
+  });
+
+  //this is what actually renders the button to the page
+  $('body').append($guess);
 
 }
