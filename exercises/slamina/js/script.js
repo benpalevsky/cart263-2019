@@ -181,7 +181,7 @@ function addButton(label) {
     if ($(this).text() === correctAnimal) {
       console.log("Correct!");
       $('.guess').remove();
-      setTimeout(function() {}, 1000);
+      setTimeout(newRound, 3000);
     } else {
       console.log("Wrong!");
     }
