@@ -157,7 +157,6 @@ let options = {
 $(document).ready(setup);
 
 
-
 function setup() {
 
   $("#ClickToBegin").click(function() {
@@ -178,13 +177,9 @@ function addButton(label) {
   $guess.button();
   $guess.on('click', function() {
     if ($(this).text() === correctAnimal) {
-      console.log("Correct!");
-      $('.guess').remove();
-      setTimeout(newRound, 3000);
+      correctGuess();
     } else {
-      console.log("Wrong!");
-      $(this).effect("shake");
-      speakAnimal(correctAnimal);
+      incorrectGuess();
     }
   });
 
@@ -205,6 +200,18 @@ function newRound() {
 
   speakAnimal(correctAnimal);
 
+}
+
+function correctGuess() {
+  console.log("Correct!");
+  $('.guess').remove();
+  setTimeout(newRound, 3000);
+}
+
+function incorrectGuess() {
+  console.log("Wrong!");
+  $(this).effect("shake");
+  speakAnimal(correctAnimal);
 }
 
 function speakAnimal(animal) {
