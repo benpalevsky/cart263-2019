@@ -190,5 +190,5 @@ function addButton(label) {
 }
 
 function newRound() {
-
+  answers = [];
 }
