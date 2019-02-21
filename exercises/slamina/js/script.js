@@ -166,3 +166,7 @@ function setup() {
 function startGame() {
   alert("Starting the game!");
 }
+
+function addButton(label) {
+
+}
