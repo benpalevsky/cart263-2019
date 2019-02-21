@@ -187,5 +187,8 @@ function addButton(label) {
 
   //this is what actually renders the button to the page
   $('body').append($guess);
+}
+
+function newRound() {
 
 }
