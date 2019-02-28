@@ -147,6 +147,7 @@ let animals = [
 
 let answers = [];
 let correctAnimal;
+let $buttons;
 const NUM_OPTIONS = 5;
 
 let options = {
@@ -160,7 +161,7 @@ if (annyang) {
   // Let's define our first command. First the text we expect, and then the function it should call
   var commands = {
     'i give up': function() {
-      correctGuess();
+      giveUp();
     }
   };
 
@@ -186,10 +187,10 @@ function startGame() {
 //the buttons also have the logic for the animals in them
 function addButton(label) {
 
-  let $guess = $('<div class = guess></div>');
-  $guess.text(label);
-  $guess.button();
-  $guess.on('click', function() {
+  $buttons = $('<div class = guess></div>');
+  $buttons.text(label);
+  $buttons.button();
+  $buttons.on('click', function() {
     if ($(this).text() === correctAnimal) {
       correctGuess();
     } else {
@@ -198,7 +199,7 @@ function addButton(label) {
   });
 
   //this is what actually renders the button to the page
-  $('body').append($guess);
+  $('body').append($buttons);
 }
 
 function newRound() {
@@ -214,7 +215,7 @@ function newRound() {
   }
 
   speakAnimal(correctAnimal);
-  ``
+
 
 }
 
@@ -230,6 +231,17 @@ function correctGuess() {
   }
 
   setTimeout(newRound, 3000);
+
+}
+
+function giveUp() {
+
+  if ($('.guess') === correctAnimal) {
+    $('.guess').effect("shake", {
+      direction: "up"
+    });
+  }
+  console.log("hey");
 
 }
 
