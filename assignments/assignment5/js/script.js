@@ -162,8 +162,11 @@ if (annyang) {
   var commands = {
     'i give up': function() {
       giveUp();
+    },
+    'say it again': function() {
+      speakAnimal(correctAnimal);
     }
-  };
+  }
 
   // Add our commands to annyang
   annyang.addCommands(commands);
