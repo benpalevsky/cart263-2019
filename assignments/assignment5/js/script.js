@@ -230,17 +230,17 @@ function correctGuess() {
     }
   }
 
-  setTimeout(newRound, 3000);
+  setTimeout(newRound, 1500);
 
 }
 
 function giveUp() {
 
   $("div:contains('" + correctAnimal + "')").effect("shake", {
-    direction: "up"
-  });
+    direction: "left"
+  }).css("color", "green");
 
-  newRound();
+  setTimeout(newRound, 1500);
 
 
 }
@@ -251,6 +251,7 @@ function incorrectGuess(button) {
   button.effect("shake", {
     direction: "up"
   });
+  button.css("color", "red");
   speakAnimal(correctAnimal);
 }
 
