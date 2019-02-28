@@ -192,7 +192,7 @@ function addButton(label) {
   $buttons.button();
   $buttons.on('click', function() {
     if ($(this).text() === correctAnimal) {
-      correctGuess();
+      correctGuess($(this));
     } else {
       incorrectGuess($(this));
     }
@@ -219,16 +219,9 @@ function newRound() {
 
 }
 
-function correctGuess() {
+function correctGuess(button) {
   console.log("Correct!");
-
-  for (i = 0; i < NUM_OPTIONS; i++) {
-    if ($('.guess')[i] === correctAnimal) {
-      $('.guess')[i].effect("shake", {
-        direction: "up"
-      });
-    }
-  }
+  button.css("color", "green");
 
   setTimeout(newRound, 1500);
 
@@ -238,7 +231,7 @@ function giveUp() {
 
   $("div:contains('" + correctAnimal + "')").effect("shake", {
     direction: "left"
-  }).css("color", "green");
+  }).css("color", "purple");
 
   setTimeout(newRound, 1500);
 
