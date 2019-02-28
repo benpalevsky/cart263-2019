@@ -203,6 +203,7 @@ function addButton(label) {
 
 function newRound() {
   answers = [];
+  $('body').empty();
 
   for (i = 0; i < NUM_OPTIONS; i++) {
     let currentAnimal = animals[Math.floor((Math.random() * animals.length))];
@@ -213,18 +214,30 @@ function newRound() {
   }
 
   speakAnimal(correctAnimal);
+  ``
 
 }
 
 function correctGuess() {
   console.log("Correct!");
-  $('.guess').remove();
+
+  for (i = 0; i < NUM_OPTIONS; i++) {
+    if ($('.guess')[i] === correctAnimal) {
+      $('.guess')[i].effect("shake", {
+        direction: "up"
+      });
+    }
+  }
+
   setTimeout(newRound, 3000);
+
 }
 
 function incorrectGuess(button) {
   console.log("Wrong!");
-  button.effect("shake");
+  button.effect("shake", {
+    direction: "up"
+  });
   speakAnimal(correctAnimal);
 }
 
