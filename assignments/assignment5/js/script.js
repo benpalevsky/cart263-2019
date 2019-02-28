@@ -236,14 +236,15 @@ function correctGuess() {
 
 function giveUp() {
 
-  if ($('.guess') === correctAnimal) {
-    $('.guess').effect("shake", {
-      direction: "up"
-    });
-  }
-  console.log("hey");
+  $("div:contains('" + correctAnimal + "')").effect("shake", {
+    direction: "up"
+  });
+
+  newRound();
+
 
 }
+
 
 function incorrectGuess(button) {
   console.log("Wrong!");
