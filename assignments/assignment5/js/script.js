@@ -148,7 +148,10 @@ let animals = [
 let answers = [];
 let correctAnimal = "";
 let $buttons;
+let $score;
+let score = 0;
 const NUM_OPTIONS = 5;
+
 
 let options = {
   rate: Math.random(),
@@ -188,11 +191,14 @@ function guess(animal) {
 
   if (animal == correctAnimal) {
     $("div:contains('" + correctAnimal + "')").css("color", "green");
+    score++;
     setTimeout(newRound, 1500);
   } else {
     $("div:contains('" + animal + "')").effect("shake", {
       direction: "left"
     }).css("color", "red");
+    score = 0;
+    $score.text(score);
   }
 
   console.log(animal);
@@ -209,6 +215,8 @@ function setup() {
 
 function startGame() {
   newRound();
+
+
 }
 
 //the buttons also have the logic for the animals in them
@@ -232,6 +240,9 @@ function addButton(label) {
 function newRound() {
   answers = [];
   $('body').empty();
+  $score = $('<div class = score></div>')
+  $score.text(score);
+  $('body').append($score);
 
   for (i = 0; i < NUM_OPTIONS; i++) {
     let currentAnimal = animals[Math.floor((Math.random() * animals.length))];
@@ -249,6 +260,7 @@ function newRound() {
 function correctGuess(button) {
   console.log("Correct!");
   button.css("color", "green");
+  score++;
 
   setTimeout(newRound, 1500);
 
@@ -260,6 +272,8 @@ function giveUp() {
     direction: "left"
   }).css("color", "purple");
 
+  score = 0;
+  $score.text(score);
   setTimeout(newRound, 1500);
 
 
@@ -272,6 +286,8 @@ function incorrectGuess(button) {
     direction: "up"
   });
   button.css("color", "red");
+  score = 0;
+  $score.text(score);
   speakAnimal(correctAnimal);
 }
 
