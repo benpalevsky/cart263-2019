@@ -146,7 +146,7 @@ let animals = [
 ];
 
 let answers = [];
-let correctAnimal;
+let correctAnimal = "";
 let $buttons;
 const NUM_OPTIONS = 5;
 
@@ -159,20 +159,44 @@ $(document).ready(setup);
 
 if (annyang) {
   // Let's define our first command. First the text we expect, and then the function it should call
-  var commands = {
-    'i give up': function() {
-      giveUp();
-    },
-    'say it again': function() {
-      speakAnimal(correctAnimal);
-    }
+  var command1 = {
+    'i give up': giveUp
   };
 
+  var command2 = {
+    'say it again': function() {
+      speakAnimal(correctAnimal)
+    }
+  }
+
+  var command3 = {
+    'i think it is *animal': guess
+  }
+
+
+
   // Add our commands to annyang
-  annyang.addCommands(commands);
+  annyang.addCommands(command1);
+  annyang.addCommands(command2);
+  annyang.addCommands(command3);
 
   // Start listening. You can call this here, or attach this call to an event, button, etc.
   annyang.start();
+}
+
+function guess(animal) {
+
+  if (animal == correctAnimal) {
+    $("div:contains('" + correctAnimal + "')").css("color", "green");
+    setTimeout(newRound, 1500);
+  } else {
+    $("div:contains('" + animal + "')").effect("shake", {
+      direction: "left"
+    }).css("color", "red");
+  }
+
+  console.log(animal);
+
 }
 
 function setup() {
