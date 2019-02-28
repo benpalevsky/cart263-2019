@@ -166,7 +166,7 @@ if (annyang) {
     'say it again': function() {
       speakAnimal(correctAnimal);
     }
-  }
+  };
 
   // Add our commands to annyang
   annyang.addCommands(commands);
