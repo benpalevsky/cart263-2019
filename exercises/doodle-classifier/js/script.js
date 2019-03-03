@@ -43,7 +43,7 @@ function preload() {
 function setup() {
 
   createCanvas(280, 280);
-  background(0);
+  background(255);
 
   // Preparing the data
   prepareData(hats, hats_data, HATS);
@@ -62,21 +62,52 @@ function setup() {
   testing = testing.concat(birds.testing);
   testing = testing.concat(asparagus.testing);
 
-  //let trainButton = select('#train');
+  let trainButton = select('#train');
   let epochCounter = 0;
 
-  // trainButton.mousePressed(function() {
-  //   trainEpoch();
-  //   epochCounter++;
-  //   console.log("Epoch: " + epochCounter);
-  // });
 
-  //let testButton = select('#test');
+  trainButton.mousePressed(function() {
+    trainEpoch();
+    epochCounter++;
+    console.log("Epoch: " + epochCounter);
+  });
 
-  // testButton.mousePressed(function() {
-  //   let percent = testAll();
-  //   console.log("Percent: " + nf(percent, 2, 2) + "%");
-  // });
+  let testButton = select('#test');
+
+  testButton.mousePressed(function() {
+    let percent = testAll();
+    console.log("Percent: " + nf(percent, 2, 2) + "%");
+  });
+
+  let guessButton = select('#guess');
+  guessButton.mousePressed(function() {
+
+    let inputs = [];
+    //just grabs all the pixels of the image
+    let img = get();
+    img.resize(28, 28);
+    img.loadPixels();
+    for (let i = 0; i < len; i++) {
+      let bright = img.pixels[i * 4];
+      inputs[i] = (255 - bright) / 255.0;
+    }
+    let guess = nn.predict(inputs);
+    let m = max(guess);
+    let classification = guess.indexOf(m);
+    if (classification === HATS) {
+      console.log("hat");
+    } else if (classification === ASPARAGUS) {
+      console.log("asparagus");
+    } else if (classification === BIRDS) {
+      console.log("bird");
+    }
+
+  })
+
+  let clearButton = select('#clear');
+  clearButton.mousePressed(function() {
+    background(255);
+  })
 
 
 
@@ -128,7 +159,7 @@ function testAll() {
   // train for one epoch (ie, one whole traversal of training)
   for (let i = 0; i < testing.length; i++) {
     let data = testing[i];
-    let inputs = data.map(x => x / 255);
+    let inputs = Array.from(data).map(x => x / 255);
     let label = testing[i].label;
     let guess = nn.predict(inputs);
 
@@ -145,7 +176,7 @@ function testAll() {
     }
   }
 
-  let percent = correct / testing.length;
+  let percent = (correct / testing.length) * 100;
   return percent;
 
 }
@@ -167,4 +198,14 @@ function prepareData(category, data, label) {
     }
 
   }
+}
+
+
+function draw() {
+  strokeWeight(10);
+  stroke(0);
+  if (mouseIsPressed) {
+    line(pmouseX, pmouseY, mouseX, mouseY);
+  }
+
 }

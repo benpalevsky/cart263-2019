@@ -8,16 +8,21 @@
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
     <!-- Library script(s) -->
-    <script src="js/libraries/p5.js"></script>
+    <script src="js/libraries/p5.min.js"></script>
+    <script src="js/libraries/p5.dom.js"></script>
     <script src="js/libraries/nn.js"></script>
     <script src="js/libraries/matrix.js"></script>
 
     <!-- My script(s) -->
     <script src="js/script.js"></script>
+
     <style>
       button {
         font-size: 24pt;
         margin: 10px;
+      }
+      body {
+        background-color: #AAA;
       }
     </style>
   </head>
@@ -25,6 +30,8 @@
   <body>
     <button id="train">train</button>
     <button id="test">test</button>
+    <button id="guess">guess</button>
+    <button id="clear">clear</button>
   </body>
 
 </html>
