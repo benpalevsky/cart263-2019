@@ -9,6 +9,14 @@ Ben Palevsky
 //
 // Description of setup
 
+var data = {
+  "name": ["Arjun", "Yuuma", "Darcy", "Mia", "Chiaki", "Izzi", "Azra", "Lina"],
+  "animal": ["unicorn", "raven", "sparrow", "scorpion", "coyote", "eagle", "owl", "lizard", "zebra", "duck", "kitten"],
+  "mood": ["vexed", "indignant", "impassioned", "wistful", "astute", "courteous"],
+  "story": ["#hero# traveled with her pet #heroPet#.  #hero# was never #mood#, for the #heroPet# was always too #mood#."],
+  "origin": ["#[hero:#name#][heroPet:#animal#]story#"]
+}
+
 
 let consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'X', 'Y', 'Z'];
 let vowels = ['A', 'E', 'I', 'O', 'U'];
@@ -30,6 +38,8 @@ function preload() {
 
 function setup() {
   buzzwords = convertToArray(buzzwords_raw);
+  grammar = tracery.createGrammar(data);
+
 
 
 
@@ -65,6 +75,8 @@ function mouseClicked() {
 
   responsiveVoice.speak(currentWord);
   currentWord = "";
+
+  console.log(grammar.flatten('#origin#'));
 
 }
 
