@@ -5,7 +5,8 @@ let proverb1;
 let proverb2;
 
 let proverb1_firstVbz;
-let proverb2_firstVbz;
+let proverb2_vbzIndex;
+let proverb2_vbz;
 
 let part1;
 let part2;
@@ -67,7 +68,7 @@ function mouseClicked() {
     part1 += proverb1.words()[i] + " ";
   }
 
-  for (var j = proverb2_firstVbz + 1; j <= proverb2.words().length - 2; j++) {
+  for (var j = proverb2_vbzIndex + 1; j <= proverb2.words().length - 2; j++) {
     part2 += proverb2.words()[j] + " ";
   }
 
@@ -78,7 +79,7 @@ function mouseClicked() {
   mashup_groomed = "";
 
   for (var i = 0; i < mashup_raw.words().length; i++) {
-    if (mashup_raw.words()[i] != ",")
+    if (mashup_raw.words()[i] != "," && mashup_raw.words()[i] != "(" && mashup_raw.words()[i] != ")")
       mashup_groomed += mashup_raw.words()[i] + " ";
   }
 
@@ -112,13 +113,22 @@ function prepareProverb1() {
 }
 
 function prepareProverb2() {
+  proverb2_vbz = [];
   proverb2 = db_vbz[floor(random(0, db_vbz.length))];
 
   //find the split points
   for (let i = 0; i < proverb2.words().length; i++) {
     //take the last vbz
     if (proverb2.pos()[i] == 'vbz') {
-      proverb2_firstVbz = i;
+      proverb2_vbz.push(i);
     }
+  }
+
+  //lets use the last vbz found, to make shorter phrases
+  proverb2_vbzIndex = proverb2_vbz[proverb2_vbz.length - 1];
+
+  //unless its a phrase ender, in which case we need to use the first
+  if (proverb2_vbzIndex == proverb2.words().length - 2) {
+    proverb2_vbzIndex = proverb2_vbz[0];
   }
 }
