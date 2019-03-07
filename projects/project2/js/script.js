@@ -59,9 +59,9 @@ function setup() {
   currentQuote = db[index].quote;
   currentAuthor = db[index].name;
 
-  $("h1").text(currentAuthor).hide()
+  $("#name").text(currentAuthor).hide()
     .fadeIn(2000);
-  $("p").text(currentQuote).hide()
+  $("#quote").text(currentQuote).hide()
     .fadeIn(1000);
 
 
