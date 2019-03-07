@@ -1,6 +1,5 @@
 let db;
-let db_is;
-let db_verb;
+let db_vbz = [];
 
 
 function preload() {
@@ -13,11 +12,25 @@ function preload() {
 
 function setup() {
 
-  for (let i = 0; i < db.proverbs.length; i++) {
-    for (let j = 0; j < db.proverbs[i].length; j++) {
-      console.log(db.proverbs[i][j]);
+
+  //lets get all proverbs with vbz (verb 3rd person singular present)
+  for (let i = 0; i < Object.keys(db).length - 1; i++) {
+    //make a new RiTa String
+    let r = new RiString(db[i]);
+    //analyze the parts of speech of that string
+    let pos = r.pos();
+
+    //loop through the parts of speech and find the word 'is'
+
+    for (let j = 0; j < pos.length; j++) {
+      if (pos[j] == 'vbz') {
+        db_vbz.push(r);
+      }
     }
   }
+
+
+
 
 
 
