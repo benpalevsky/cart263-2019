@@ -4,8 +4,14 @@ let db_vbz = [];
 let proverb1;
 let proverb2;
 
-let splitPoint;
-let mashup;
+let proverb1_firstVbz;
+let proverb2_firstVbz;
+
+let part1;
+let part2;
+
+let mashup_raw;
+let mashup_groomed;
 
 
 function preload() {
@@ -36,39 +42,62 @@ function setup() {
       }
     }
   }
+}
+
+function draw() {
+
+
+}
+
+
+//should probably remove p5js from this project
+function mouseClicked() {
 
   proverb1 = db_vbz[floor(random(0, db_vbz.length))];
   proverb2 = db_vbz[floor(random(0, db_vbz.length))];
-  console.log(proverb1);
-  console.log(proverb2);
 
-
-  //find the split point
+  //find the split points
 
   for (let i = 0; i < proverb1.words().length; i++) {
     if (proverb1.pos()[i] == 'vbz') {
-      splitPoint = i;
-      console.log("split at index: " + splitPoint);
+      proverb1_firstVbz = i;
+      if (proverb1.pos()[i + 1] == ',') {
+        proverb1_firstVbz = i;
+      }
       break;
     }
   }
 
+  for (let i = 0; i < proverb2.words().length; i++) {
+    //take the last vbz
+    if (proverb2.pos()[i] == 'vbz') {
+      proverb2_firstVbz = i;
+    }
+  }
 
   //preliminary mashup
-  mashup = ""
+  mashup_raw = "";
+  part1 = "";
+  part2 = "";
 
-  for (var i = 0; i <= splitPoint; i++) {
-    mashup += proverb1.words()[i] + " ";
-    console.log(mashup);
+  for (var i = 0; i <= proverb1_firstVbz; i++) {
+    part1 += proverb1.words()[i] + " ";
   }
 
-  for (var j = splitPoint + 1; j <= proverb2.words().length - 2; j++) {
-    mashup += proverb2.words()[j] + " ";
+  for (var j = proverb2_firstVbz + 1; j <= proverb2.words().length - 2; j++) {
+    part2 += proverb2.words()[j] + " ";
   }
 
+  mashup_raw = part1 + part2;
+  mashup_raw = new RiString(mashup_raw);
 
+  //groom for commas
+  mashup_groomed = "";
 
-
+  for (var i = 0; i < mashup_raw.words().length; i++) {
+    if (mashup_raw.words()[i] != ",")
+      mashup_groomed += mashup_raw.words()[i] + " ";
+  }
 
   //aesthetics suck
   $("#proverb1").text(proverb1.text()).hide()
@@ -77,15 +106,9 @@ function setup() {
     .fadeIn(2000);
   $("#proverb2").text(proverb2.text()).hide()
     .fadeIn(1000);
-  $("#pos2").text(proverb1.pos()).hide()
+  $("#pos2").text(proverb2.pos()).hide()
     .fadeIn(2000);
-  $("#mashup").text(mashup).hide()
+  $("#mashup").text(mashup_groomed).hide()
     .fadeIn(1000);
-
-
-}
-
-function draw() {
-
 
 }
