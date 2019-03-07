@@ -1,6 +1,9 @@
+@import 'https://fonts.googleapis.com/css?family=Kaushan+Script';
+
+
 #mashup
 {
-    font-family: monospace;
+    font-family: 'Kaushan Script';
     font-size: 3.5vw;
     line-height: 3vw;
 

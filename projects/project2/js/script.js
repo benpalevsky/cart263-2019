@@ -114,7 +114,14 @@ function prepareProverb1() {
 
 function prepareProverb2() {
   proverb2_vbz = [];
+
   proverb2 = db_vbz[floor(random(0, db_vbz.length))];
+
+  //make sure that the differential in length is significant
+  while (abs(proverb2.words().length - proverb1.words().length) < 4) {
+    proverb2 = db_vbz[floor(random(0, db_vbz.length))];
+  }
+
 
   //find the split points
   for (let i = 0; i < proverb2.words().length; i++) {
