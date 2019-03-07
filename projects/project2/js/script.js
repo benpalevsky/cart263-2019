@@ -19,7 +19,29 @@ if (annyang) {
     //console.log(whatWasHeardArray);
     spokenSentence = whatWasHeardArray[0];
 
-    transformedSentence = RiTa.similarBySound(spokenSentence);
+    transformedSentence = new RiString(spokenSentence);
+    let partsOfSentence = transformedSentence.pos();
+    console.log(partsOfSentence);
+    let newSentence = "";
+    for (var i = 0; i < partsOfSentence.length; i++) {
+      if (partsOfSentence[i] == 'nn') {
+        newSentence += (RiTa.randomWord('nn') + " ");
+      } else if (partsOfSentence[i] == 'nns') {
+        newSentence += (RiTa.randomWord('nns') + " ");
+      } else if (partsOfSentence[i] == 'vb') {
+        newSentence += (RiTa.randomWord('vb') + " ");
+      } else if (partsOfSentence[i] == 'vbd') {
+        newSentence += (RiTa.randomWord('vbd') + " ");
+      } else {
+        newSentence += transformedSentence.words()[i] + " ";
+      }
+    }
+    transformedSentence = newSentence;
+
+
+
+
+
 
   });
 }
@@ -33,12 +55,13 @@ function preload() {
 function setup() {
 
   //hard coded 103 because I can't get the length of objects for some reason
-  currentQuote = db[floor(random(0, 103))].quote;
-  currentAuthor = db[floor(random(0, 103))].name;
+  let index = floor(random(0, 103))
+  currentQuote = db[index].quote;
+  currentAuthor = db[index].name;
 
-  $("h1").text(currentQuote).hide()
+  $("h1").text(currentAuthor).hide()
     .fadeIn(2000);
-  $("p").text(currentAuthor).hide()
+  $("p").text(currentQuote).hide()
     .fadeIn(1000);
 
 

@@ -1,17 +1,6 @@
 h1
 {
     font-family: monospace;
-    font-size: 2vw;
-
-    text-align: center;
-    letter-spacing: 2px;
-
-    color: #f1e8b8;
-}
-
-p
-{
-    font-family: monospace;
     font-size: 3.5vw;
     line-height: 3vw;
 
@@ -19,6 +8,17 @@ p
     letter-spacing: 2px;
 
     color: #aaa;
+}
+
+p
+{
+    font-family: monospace;
+    font-size: 2vw;
+
+    text-align: center;
+    letter-spacing: 2px;
+
+    color: #f1e8b8;
 }
 
 body
