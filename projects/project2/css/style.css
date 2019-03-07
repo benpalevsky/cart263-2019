@@ -1,4 +1,4 @@
-h1
+#name
 {
     font-family: monospace;
     font-size: 3.5vw;
@@ -10,7 +10,7 @@ h1
     color: #aaa;
 }
 
-p
+#quote
 {
     font-family: monospace;
     font-size: 2vw;
@@ -19,6 +19,17 @@ p
     letter-spacing: 2px;
 
     color: #f1e8b8;
+}
+
+#response
+{
+    font-family: monospace;
+    font-size: 2vw;
+
+    text-align: center;
+    letter-spacing: 2px;
+
+    color: red;
 }
 
 body
