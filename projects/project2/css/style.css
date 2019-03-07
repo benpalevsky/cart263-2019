@@ -1,24 +1,22 @@
 h1
 {
-    font-family: helvetica;
-    font-size: 6vw;
+    font-family: monospace;
+    font-size: 2vw;
 
     text-align: center;
     letter-spacing: 2px;
-    text-transform: uppercase;
 
     color: #f1e8b8;
 }
 
 p
 {
-    font-family: helvetica;
-    font-size: 6vw;
+    font-family: monospace;
+    font-size: 3.5vw;
     line-height: 3vw;
 
     text-align: center;
     letter-spacing: 2px;
-    text-transform: uppercase;
 
     color: #aaa;
 }
