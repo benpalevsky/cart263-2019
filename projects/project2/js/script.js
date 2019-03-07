@@ -53,27 +53,10 @@ function draw() {
 //should probably remove p5js from this project
 function mouseClicked() {
 
-  proverb1 = db_vbz[floor(random(0, db_vbz.length))];
-  proverb2 = db_vbz[floor(random(0, db_vbz.length))];
 
-  //find the split points
+  prepareProverb1();
+  prepareProverb2();
 
-  for (let i = 0; i < proverb1.words().length; i++) {
-    if (proverb1.pos()[i] == 'vbz') {
-      proverb1_firstVbz = i;
-      if (proverb1.pos()[i + 1] == ',') {
-        proverb1_firstVbz = i;
-      }
-      break;
-    }
-  }
-
-  for (let i = 0; i < proverb2.words().length; i++) {
-    //take the last vbz
-    if (proverb2.pos()[i] == 'vbz') {
-      proverb2_firstVbz = i;
-    }
-  }
 
   //preliminary mashup
   mashup_raw = "";
@@ -111,4 +94,31 @@ function mouseClicked() {
   $("#mashup").text(mashup_groomed).hide()
     .fadeIn(1000);
 
+}
+
+function prepareProverb1() {
+  proverb1 = db_vbz[floor(random(0, db_vbz.length))];
+
+  //find the split points
+  for (let i = 0; i < proverb1.words().length; i++) {
+    if (proverb1.pos()[i] == 'vbz') {
+      proverb1_firstVbz = i;
+      if (proverb1.pos()[i + 1] == ',') {
+        proverb1_firstVbz = i;
+      }
+      break;
+    }
+  }
+}
+
+function prepareProverb2() {
+  proverb2 = db_vbz[floor(random(0, db_vbz.length))];
+
+  //find the split points
+  for (let i = 0; i < proverb2.words().length; i++) {
+    //take the last vbz
+    if (proverb2.pos()[i] == 'vbz') {
+      proverb2_firstVbz = i;
+    }
+  }
 }
