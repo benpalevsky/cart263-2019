@@ -1,4 +1,4 @@
-#name
+#mashup
 {
     font-family: monospace;
     font-size: 3.5vw;
@@ -10,23 +10,23 @@
     color: #aaa;
 }
 
-#quote
+#proverb1
 {
     font-family: monospace;
     font-size: 2vw;
 
-    text-align: center;
+    text-align: right;
     letter-spacing: 2px;
 
     color: #f1e8b8;
 }
 
-#response
+#proverb2
 {
     font-family: monospace;
     font-size: 2vw;
 
-    text-align: center;
+    text-align: left;
     letter-spacing: 2px;
 
     color: red;
