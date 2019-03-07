@@ -21,7 +21,29 @@
     color: #f1e8b8;
 }
 
+#pos1
+{
+    font-family: monospace;
+    font-size: 2vw;
+
+    text-align: left;
+    letter-spacing: 2px;
+
+    color: #f1e8b8;
+}
+
 #proverb2
+{
+    font-family: monospace;
+    font-size: 2vw;
+
+    text-align: right;
+    letter-spacing: 2px;
+
+    color: red;
+}
+
+#pos2
 {
     font-family: monospace;
     font-size: 2vw;

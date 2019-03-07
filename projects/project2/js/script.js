@@ -64,10 +64,8 @@ function setup() {
 
   for (var j = splitPoint + 1; j <= proverb2.words().length - 2; j++) {
     mashup += proverb2.words()[j] + " ";
-    console.log(mashup);
   }
 
-  mashup += ".";
 
 
 
@@ -75,8 +73,12 @@ function setup() {
   //aesthetics suck
   $("#proverb1").text(proverb1.text()).hide()
     .fadeIn(2000);
+  $("#pos1").text(proverb1.pos()).hide()
+    .fadeIn(2000);
   $("#proverb2").text(proverb2.text()).hide()
     .fadeIn(1000);
+  $("#pos2").text(proverb1.pos()).hide()
+    .fadeIn(2000);
   $("#mashup").text(mashup).hide()
     .fadeIn(1000);
 
