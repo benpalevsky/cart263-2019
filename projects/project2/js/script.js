@@ -1,6 +1,12 @@
 let db;
 let db_vbz = [];
 
+let proverb1;
+let proverb2;
+
+let splitPoint;
+let mashup;
+
 
 function preload() {
   font = loadFont('assets/fonts/SourceSansPro-Regular.otf');
@@ -31,33 +37,47 @@ function setup() {
     }
   }
 
-  let proverb1 = db_vbz[floor(random(0, db_vbz.length))];
-  let proverb2 = db_vbz[floor(random(0, db_vbz.length))];
+  proverb1 = db_vbz[floor(random(0, db_vbz.length))];
+  proverb2 = db_vbz[floor(random(0, db_vbz.length))];
   console.log(proverb1);
   console.log(proverb2);
 
 
-  let mashup;
-  let split_point;
+  //find the split point
 
-
-  //flip a coin to see which half of the proverb gets the db_vbz
-
-  for (var i = 0; i < proverb1.words().length; i++) {
+  for (let i = 0; i < proverb1.words().length; i++) {
     if (proverb1.pos()[i] == 'vbz') {
-      split_pont = i;
+      splitPoint = i;
+      console.log("split at index: " + splitPoint);
+      break;
     }
   }
+
+
+  //preliminary mashup
+  mashup = ""
+
+  for (var i = 0; i <= splitPoint; i++) {
+    mashup += proverb1.words()[i] + " ";
+    console.log(mashup);
+  }
+
+  for (var j = splitPoint + 1; j <= proverb2.words().length - 2; j++) {
+    mashup += proverb2.words()[j] + " ";
+    console.log(mashup);
+  }
+
+  mashup += ".";
 
 
 
 
   //aesthetics suck
-  $("#proverb1").text("An apple a day keeps the doctor away").hide()
+  $("#proverb1").text(proverb1.text()).hide()
     .fadeIn(2000);
-  $("#proverb2").text("A penny saved is a penny earned").hide()
+  $("#proverb2").text(proverb2.text()).hide()
     .fadeIn(1000);
-  $("#mashup").text("An apple a day is a penny earned").hide()
+  $("#mashup").text(mashup).hide()
     .fadeIn(1000);
 
 
