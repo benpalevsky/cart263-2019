@@ -4,6 +4,8 @@ let db_vbz = [];
 
 function preload() {
   font = loadFont('assets/fonts/SourceSansPro-Regular.otf');
+
+  //need to find the source for this
   db = loadJSON('js/data/proverbs.json');
 }
 
@@ -29,8 +31,23 @@ function setup() {
     }
   }
 
+  let proverb1 = db_vbz[floor(random(0, db_vbz.length))];
+  let proverb2 = db_vbz[floor(random(0, db_vbz.length))];
+  console.log(proverb1);
+  console.log(proverb2);
 
 
+  let mashup;
+  let split_point;
+
+
+  //flip a coin to see which half of the proverb gets the db_vbz
+
+  for (var i = 0; i < proverb1.words().length; i++) {
+    if (proverb1.pos()[i] == 'vbz') {
+      split_pont = i;
+    }
+  }
 
 
 
