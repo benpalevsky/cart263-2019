@@ -1,12 +1,29 @@
-/*********************************************
+h1
+{
+    font-family: helvetica;
+    font-size: 6vw;
 
-Here is a description of any special CSS used.
-In this case it's just padding and margin to 0
-so the canvas is flush with the top left corner.
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 
-**********************************************/
+    color: #f1e8b8;
+}
 
-body {
-  padding: 0;
-  margin: 0;
+p
+{
+    font-family: helvetica;
+    font-size: 6vw;
+    line-height: 3vw;
+
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: #aaa;
+}
+
+body
+{
+    background-color: #191919;
 }
