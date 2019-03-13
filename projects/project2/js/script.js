@@ -48,7 +48,7 @@ function setup() {
   setProverb2();
   combine();
   format();
-  display();
+  displayMasup();
 
 }
 
@@ -86,16 +86,7 @@ function showPos() {
     .fadeIn(2000);
 }
 
-function display() {
-  //aesthetics suck
-  $("#proverb1").text(proverb1.text()).hide()
-    .fadeIn(2000);
-  $("#pos1").text(proverb1.pos()).hide()
-    .fadeIn(2000);
-  $("#proverb2").text(proverb2.text()).hide()
-    .fadeIn(1000);
-  $("#pos2").text(proverb2.pos()).hide()
-    .fadeIn(2000);
+function displayMashup() {
   $("#mashup").text(mashup_groomed).hide()
     .fadeIn(1000);
 }
