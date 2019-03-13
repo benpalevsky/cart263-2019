@@ -48,7 +48,7 @@ function setup() {
   setProverb2();
   combine();
   format();
-  displayMasup();
+  displayMashup();
 
 }
 
