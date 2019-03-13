@@ -43,6 +43,13 @@ function setup() {
       }
     }
   }
+
+  setProverb1();
+  setProverb2();
+  combine();
+  format();
+  display();
+
 }
 
 function draw() {
@@ -54,11 +61,40 @@ function draw() {
 //should probably remove p5js from this project
 function mouseClicked() {
 
+  setProverb1();
+  setProverb2();
+  combine();
+  format();
+  display();
 
-  prepareProverb1();
-  prepareProverb2();
+}
 
+function display() {
+  //aesthetics suck
+  $("#proverb1").text(proverb1.text()).hide()
+    .fadeIn(2000);
+  $("#pos1").text(proverb1.pos()).hide()
+    .fadeIn(2000);
+  $("#proverb2").text(proverb2.text()).hide()
+    .fadeIn(1000);
+  $("#pos2").text(proverb2.pos()).hide()
+    .fadeIn(2000);
+  $("#mashup").text(mashup_groomed).hide()
+    .fadeIn(1000);
+}
 
+function format() {
+  //groom for commas
+  mashup_groomed = "";
+
+  for (var i = 0; i < mashup_raw.words().length; i++) {
+    if (mashup_raw.words()[i] != "," && mashup_raw.words()[i] != "(" && mashup_raw.words()[i] != ")")
+      mashup_groomed += mashup_raw.words()[i] + " ";
+  }
+
+}
+
+function combine() {
   //preliminary mashup
   mashup_raw = "";
   part1 = "";
@@ -74,30 +110,9 @@ function mouseClicked() {
 
   mashup_raw = part1 + part2;
   mashup_raw = new RiString(mashup_raw);
-
-  //groom for commas
-  mashup_groomed = "";
-
-  for (var i = 0; i < mashup_raw.words().length; i++) {
-    if (mashup_raw.words()[i] != "," && mashup_raw.words()[i] != "(" && mashup_raw.words()[i] != ")")
-      mashup_groomed += mashup_raw.words()[i] + " ";
-  }
-
-  //aesthetics suck
-  $("#proverb1").text(proverb1.text()).hide()
-    .fadeIn(2000);
-  $("#pos1").text(proverb1.pos()).hide()
-    .fadeIn(2000);
-  $("#proverb2").text(proverb2.text()).hide()
-    .fadeIn(1000);
-  $("#pos2").text(proverb2.pos()).hide()
-    .fadeIn(2000);
-  $("#mashup").text(mashup_groomed).hide()
-    .fadeIn(1000);
-
 }
 
-function prepareProverb1() {
+function setProverb1() {
   proverb1 = db_vbz[floor(random(0, db_vbz.length))];
 
   //find the split points
@@ -112,7 +127,7 @@ function prepareProverb1() {
   }
 }
 
-function prepareProverb2() {
+function setProverb2() {
   proverb2_vbz = [];
 
   proverb2 = db_vbz[floor(random(0, db_vbz.length))];
