@@ -67,7 +67,6 @@ function mouseClicked() {
 
   if (
     toggle == "mashup-is-showing") {
-    $("#mashup").hide();
     setAndFadeInProverbs();
     toggle = "mashup-is-hidden";
   } else {
