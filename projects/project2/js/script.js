@@ -61,11 +61,26 @@ function draw() {
 //should probably remove p5js from this project
 function mouseClicked() {
 
-  setProverb1();
-  setProverb2();
-  combine();
-  format();
-  display();
+  showProverbs();
+  // setProverb1();
+  // setProverb2();
+  // combine();
+  // format();
+  // display();
+
+}
+
+function showProverbs() {
+
+  $("#mashup").text(mashup_groomed).hide();
+  $("#proverb1").text(proverb1.text()).hide()
+    .fadeIn(2000);
+  $("#pos1").text(proverb1.pos()).hide()
+    .fadeIn(2000);
+  $("#proverb2").text(proverb2.text()).hide()
+    .fadeIn(1000);
+  $("#pos2").text(proverb2.pos()).hide()
+    .fadeIn(2000);
 
 }
 
