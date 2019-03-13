@@ -14,6 +14,8 @@ let part2;
 let mashup_raw;
 let mashup_groomed;
 
+let toggle = "mashup-is-showing";
+
 
 function preload() {
   font = loadFont('assets/fonts/SourceSansPro-Regular.otf');
@@ -26,6 +28,7 @@ function preload() {
 
 
 function setup() {
+
 
 
   //lets get all proverbs with vbz (verb 3rd person singular present)
@@ -44,8 +47,8 @@ function setup() {
     }
   }
 
-  setProverb1();
-  setProverb2();
+  genProverb1();
+  genProverb2();
   combine();
   format();
   displayMashup();
@@ -61,22 +64,38 @@ function draw() {
 //should probably remove p5js from this project
 function mouseClicked() {
 
-  showProverbs();
-  // setProverb1();
-  // setProverb2();
-  // combine();
-  // format();
-  // display();
+
+  if (
+    toggle == "mashup-is-showing") {
+    $("#mashup").hide();
+    setAndFadeInProverbs();
+    toggle = "mashup-is-hidden";
+  } else {
+    toggle = "mashup-is-showing";
+    hideProverbs();
+    genProverb1();
+    genProverb2();
+    combine();
+    format();
+    displayMashup();
+  }
+
 
 }
 
-function showProverbs() {
+function setAndFadeInProverbs() {
 
-  $("#mashup").text(mashup_groomed).hide();
   $("#proverb1").text(proverb1.text()).hide()
     .fadeIn(2000);
   $("#proverb2").text(proverb2.text()).hide()
     .fadeIn(1000);
+}
+
+function hideProverbs() {
+
+  $("#proverb1").hide();
+  $("#proverb2").hide();
+
 }
 
 function showPos() {
@@ -120,7 +139,7 @@ function combine() {
   mashup_raw = new RiString(mashup_raw);
 }
 
-function setProverb1() {
+function genProverb1() {
   proverb1 = db_vbz[floor(random(0, db_vbz.length))];
 
   //find the split points
@@ -135,7 +154,7 @@ function setProverb1() {
   }
 }
 
-function setProverb2() {
+function genProverb2() {
   proverb2_vbz = [];
 
   proverb2 = db_vbz[floor(random(0, db_vbz.length))];
