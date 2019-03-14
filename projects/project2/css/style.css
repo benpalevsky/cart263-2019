@@ -23,8 +23,8 @@ h1
     position: relative;
     top: 50%;
 
-    transform: translateX(-20%);
-    text-align: center;
+    transform: translateX(5%);
+    text-align: left;
 
     color: #fff;
 }
@@ -34,8 +34,8 @@ h1
     position: relative;
     top: 50%;
 
-    transform: translateX(20%);
-    text-align: center;
+    transform: translateX(-10%);
+    text-align: right;
 
     color: #fff;
 }
