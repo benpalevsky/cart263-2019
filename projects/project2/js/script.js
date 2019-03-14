@@ -98,10 +98,8 @@ function hideProverbs() {
 }
 
 function showPos() {
-  $("#pos1").text(proverb1.pos()).hide()
-    .fadeIn(2000);
-  $("#pos2").text(proverb2.pos()).hide()
-    .fadeIn(2000);
+  console.log(proverb1.pos());
+  console.log(proverb2.pos());
 }
 
 function displayMashup() {

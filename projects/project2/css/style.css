@@ -18,12 +18,23 @@ h1
     color: #fff;
 }
 
-p
+#proverb1
 {
     position: relative;
     top: 50%;
 
-    transform: translateY(-50%);
+    transform: translateX(-20%);
+    text-align: center;
+
+    color: #fff;
+}
+
+#proverb2
+{
+    position: relative;
+    top: 50%;
+
+    transform: translateX(20%);
     text-align: center;
 
     color: #fff;
