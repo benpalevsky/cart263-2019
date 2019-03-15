@@ -48,6 +48,7 @@ function setup() {
   combine(); //combine them
   format(); //format the mashup
   displayMashup(); //display the mashup
+  responsiveVoice.speak(mashup_groomed);
 
 }
 
@@ -67,6 +68,8 @@ function mouseClicked() {
     combine();
     format();
     displayMashup();
+    responsiveVoice.speak(mashup_groomed);
+
   }
 
 
