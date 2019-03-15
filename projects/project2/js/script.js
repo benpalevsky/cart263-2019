@@ -157,7 +157,7 @@ function genProverb2() {
   proverb2 = db_vbz[floor(random(0, db_vbz.length))];
 
   //make sure that the differential in length is significant
-  while (abs(proverb2.words().length - proverb1.words().length) < 4) {
+  while (abs(proverb2.words().length - proverb1.words().length) < floor(random(0, 5))) {
     proverb2 = db_vbz[floor(random(0, db_vbz.length))];
   }
 
@@ -170,8 +170,15 @@ function genProverb2() {
     }
   }
 
-  //lets use the last vbz found, to make shorter phrases
-  proverb2_vbzIndex = proverb2_vbz[proverb2_vbz.length - 1];
+  //flip a coin
+
+  if (random() > 0.5) {
+    //lets use the last vbz found, to make shorter phrases
+    proverb2_vbzIndex = proverb2_vbz[proverb2_vbz.length - 1];
+  } else {
+    proverb2_vbzIndex = proverb2_vbz[0];
+  }
+
 
   //unless its a phrase ender, in which case we need to use the first
   if (proverb2_vbzIndex == proverb2.words().length - 2) {
