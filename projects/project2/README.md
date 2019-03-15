@@ -16,7 +16,7 @@ Similarly, I hope you will enjoy sampling these proverbs. **A penny saved keeps 
 
 As it turns out, the *deep breath* part of the proverb kept landing on the verb (third person, singular present) of the phrase. If you use RiTa.js, you can able to deconstruct a phrase into its parts of speech, find out which word is a third person, singular verb, and then take two proverbs, make the incision, and conjoin them!
 
-There's something a little frightening about generated content. I'm not really sure why ... but I'm both terrified and in love with generated content that I wanted to try making some of my own. James Bridle has warned us about the dangers of automation.
+I'm not really sure why, but I'm both terrified, and in love, with automated/procedurally generated content. I used this project as an attempt to better understand it. And if you want to understand even more, I'd urge you to to read "Something is Wrong on the Internet" by James Bridle. In it, he warns us about the dangers of automated content.
 
 And to him I say: **An elephant never forgets no moss.**
 
