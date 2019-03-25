@@ -56,13 +56,12 @@ function gotData(data) {
   // Same again for room
   let room = getRandomElement(data.rooms);
 
-  let a = 'a';
+  let an = 'a';
 
 
   for (var i = 0; i < vowels.length; i++) {
-    if (room.charAt[0] === vowels[i]) {
-      a = 'an';
-      break;
+    if (room.charAt(0) === vowels[i]) {
+      an = 'an';
     }
   }
 
@@ -77,9 +76,9 @@ function gotData(data) {
   // values we've just calculated
 
   if (Math.random() > 0.5) {
-    description = `${condiment} ${verb} like a ${cat} in a ${room}.`;
+    description = `${condiment} ${verb} like a ${cat} in ${an} ${room}.`;
   } else {
-    description = `${cannabis} ${verb} like a ${moves} in a ${room}.`;
+    description = `${cannabis} ${verb} like a ${moves} in ${an} ${room}.`;
   }
 
   // Finally, we add it to the page and hey presto!
