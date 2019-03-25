@@ -38,7 +38,7 @@ $(document).ready(function() {
   // is available...
   $.getJSON('data/data.json', gotData);
 
-  $("*").click(function() {
+  $("body").click(function() {
     $('body').html('');
     $.getJSON('data/data.json', gotData);
   })
