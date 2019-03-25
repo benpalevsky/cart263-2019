@@ -13,6 +13,12 @@ author, and this description to match your project!
 // Description of setup
 
 let freqs = [220.00, 246.94, 277.18, 293.66, 329.63, 369.99, 415.30, 440.00];
+
+let pattern = ["x", "*", "*", "*", "o", "*", "*", "*"];
+let patternIndex = 0;
+let drumSymbols = "xo*";
+
+
 let kick;
 let snare;
 let hihat;
@@ -23,7 +29,7 @@ function setup() {
   synth = new Pizzicato.Sound({
     source: 'wave',
     options: {
-      frequency: 440
+      frequency: 440,
     }
   });
 
@@ -42,5 +48,45 @@ function setup() {
 // Description of draw()
 
 function draw() {
+
+}
+
+function playNote(frequency) {
+  synth.frequency = frequency;
+  synth.play();
+}
+
+function playDrum() {
+  let currentDrum = pattern[patternIndex];
+  for (var i = 0; i < drumSymbols.length; i++) {
+    if (drumSymbols[i] === currentDrum) {
+      switch (drumSymbols[i]) {
+        case 'x':
+          kick.play();
+          break;
+        case 'o':
+          snare.play();
+          break;
+        case '*':
+          hihat.play();
+          break;
+        default:
+          console.log("hey");
+      }
+    }
+  }
+
+  patternIndex++;
+  if (patternIndex > pattern.length - 1) {
+    patternIndex = 0;
+  }
+}
+
+function mousePressed() {
+  setInterval(function() {
+    playNote(freqs[floor(random(0, freqs.length))]);
+  }, 160);
+
+  setInterval(playDrum, 80);
 
 }
