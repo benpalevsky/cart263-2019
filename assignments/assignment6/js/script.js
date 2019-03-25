@@ -17,6 +17,16 @@ http://rednoise.org/rita/index.html
 */
 
 let vowels = "aeiou";
+let condiment;
+let moves;
+let verb;
+let cat;
+let room;
+let an;
+let cannabis;
+let description;
+
+let db;
 
 $(document).ready(function() {
 
@@ -27,7 +37,15 @@ $(document).ready(function() {
   // the location of the file, and a function to call when the data
   // is available...
   $.getJSON('data/data.json', gotData);
-});
+
+  $("*").click(function() {
+    $('body').html('');
+    $.getJSON('data/data.json', gotData);
+  })
+})
+
+
+
 
 // gotData (data)
 //
@@ -40,9 +58,9 @@ function gotData(data) {
 
   // First the condiment
   // Get a random condiment from the condiments array in the JSON
-  let condiment = getRandomElement(data.condiments);
+  condiment = getRandomElement(data.condiments);
   // Assume it's singular
-  let verb = 'is';
+  verb = 'is';
   // Check if the last latter of the condiment is an 's'
   if (condiment.charAt(condiment.length - 1) === 's') {
     // If so, assume it's plural (this is a flawed assumption)
@@ -51,12 +69,11 @@ function gotData(data) {
 
 
   // Now the cat
-  let cat = getRandomElement(data.cats);
+  cat = getRandomElement(data.cats);
 
   // Same again for room
-  let room = getRandomElement(data.rooms);
-
-  let an = 'a';
+  room = getRandomElement(data.rooms);
+  an = 'a';
 
 
   for (var i = 0; i < vowels.length; i++) {
@@ -65,11 +82,11 @@ function gotData(data) {
     }
   }
 
-  let moves = getRandomElement(data.moves);
+  moves = getRandomElement(data.moves);
 
-  let cannabis = getRandomElement(data.cannabis);
+  cannabis = getRandomElement(data.cannabis);
 
-  let description = "";
+  description = "";
 
   // Now we can construct our description with a template string
   // We have the basic structure of a sentence and we substitute in the
@@ -82,7 +99,7 @@ function gotData(data) {
   }
 
   // Finally, we add it to the page and hey presto!
-  $('body').append(description)
+  $('body').append(description);
 }
 
 // getRandomElement ()
