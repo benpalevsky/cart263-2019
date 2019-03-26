@@ -58,6 +58,10 @@ function playNote(frequency) {
   synth.play();
 }
 
+function playRest() {
+  synth.stop();
+}
+
 function playDrum() {
   let currentDrum = pattern[patternIndex];
   for (var i = 0; i < drumSymbols.length; i++) {
@@ -87,7 +91,11 @@ function playDrum() {
 function mousePressed() {
   if (!play) {
     setInterval(function() {
-      playNote(freqs[floor(random(0, freqs.length))]);
+      if (Math.random() > 0.5) {
+        playNote(freqs[floor(random(0, freqs.length))]);
+      } else {
+        playRest();
+      }
     }, 160);
 
     setInterval(playDrum, 80);
