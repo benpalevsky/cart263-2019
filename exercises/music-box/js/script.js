@@ -24,6 +24,8 @@ let snare;
 let hihat;
 let synth;
 
+let play = false;
+
 function setup() {
 
   synth = new Pizzicato.Sound({
@@ -83,10 +85,12 @@ function playDrum() {
 }
 
 function mousePressed() {
-  setInterval(function() {
-    playNote(freqs[floor(random(0, freqs.length))]);
-  }, 160);
+  if (!play) {
+    setInterval(function() {
+      playNote(freqs[floor(random(0, freqs.length))]);
+    }, 160);
 
-  setInterval(playDrum, 80);
-
+    setInterval(playDrum, 80);
+    play = true;
+  }
 }
