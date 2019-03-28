@@ -12,6 +12,13 @@ author, and this description to match your project!
 //
 // Description of setup
 
+let reverb = new Pizzicato.Effects.Reverb({
+  time: 1,
+  decay: 0.8,
+  reverse: true,
+  mix: 0.5
+});
+
 let freqs = [220.00, 246.94, 277.18, 293.66, 329.63, 369.99, 415.30, 440.00];
 
 let pattern = ["x", "*", "*", "*", "o", "-", "*", "*"];
@@ -31,14 +38,22 @@ function setup() {
   synth = new Pizzicato.Sound({
     source: 'wave',
     options: {
+      attack: 0.5,
       frequency: 440
     }
   });
+
+  synth.addEffect(reverb);
+
+
 
   kick = new Pizzicato.Sound('assets/sounds/kick.wav');
   snare = new Pizzicato.Sound('assets/sounds/snare.wav');
   hihat = new Pizzicato.Sound('assets/sounds/hihat.wav');
 
+  kick.addEffect(reverb);
+  snare.addEffect(reverb);
+  hihat.addEffect(reverb);
 
 
 
@@ -55,7 +70,6 @@ function draw() {
 
 function playNote(frequency) {
   synth.stop();
-  synth.attack = 1;
   synth.frequency = frequency;
   synth.play();
 }
