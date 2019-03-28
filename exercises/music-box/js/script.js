@@ -54,8 +54,15 @@ function draw() {
 }
 
 function playNote(frequency) {
+  synth.stop();
   synth.frequency = frequency;
   synth.play();
+}
+
+function playRandomNote() {
+  synth.stop();
+  playNote(freqs[floor(random(0, freqs.length))]);
+  setTimeout(playRandomNote, floor(random(1, 4)) * 1000);
 }
 
 function playRest() {
@@ -88,15 +95,15 @@ function playDrum() {
   }
 }
 
+
 function mousePressed() {
   if (!play) {
-    setInterval(function() {
-      if (Math.random() > 0.5) {
-        playNote(freqs[floor(random(0, freqs.length))]);
-      } else {
-        playRest();
-      }
-    }, 160);
+    if (Math.random() > 0) {
+      playRandomNote();
+    }
+    //   playRest();
+    //   setTimeout(playRandomNote, floor(random(1, 4)));
+    // }
 
     setInterval(playDrum, 80);
     play = true;
