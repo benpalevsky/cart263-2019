@@ -19,9 +19,21 @@ let reverb = new Pizzicato.Effects.Reverb({
   mix: 0.5
 });
 
-let freqs = [220.00, 246.94, 277.18, 293.66, 329.63, 369.99, 415.30, 440.00];
+let flanger = new Pizzicato.Effects.Flanger({
+  time: 0.45,
+  speed: 0.2,
+  depth: 0.1,
+  feedback: 0.1,
+  mix: 0.5
+});
 
-let pattern = ["x", "*", "*", "*", "o", "-", "*", "*"];
+let freqs;
+
+let aMajor = [220.00, 246.94, 277.18, 293.66, 329.63, 369.99, 415.30, 440.00];
+let fSharpMinor = [185.00, 207.65, 220.00, 246.94, 277.18, 293.66, 329.63, 369.99];
+let eMajor = [164.81, 185.00, 207.65, 220.00, 246.94, 261.63, 311.13, 329.63];
+
+let pattern = ["x", "-", "*", "-", "o", "-", "*", "-"];
 let patternIndex = 0;
 let drumSymbols = "xo*";
 
@@ -35,15 +47,21 @@ let play = false;
 
 function setup() {
 
+  createCanvas(500, 500);
+
+  freqs = aMajor;
+
   synth = new Pizzicato.Sound({
     source: 'wave',
     options: {
       attack: 0.5,
+      volume: 0.1,
       frequency: 440
     }
   });
 
   synth.addEffect(reverb);
+  synth.addEffect(flanger);
 
 
 
@@ -66,10 +84,11 @@ function setup() {
 
 function draw() {
 
+  background(255);
+
 }
 
 function playNote(frequency) {
-  synth.stop();
   synth.frequency = frequency;
   synth.play();
 }
@@ -84,7 +103,6 @@ function playRandomNote() {
 }
 
 function playRest() {
-  synth.stop();
   synth.attack = 1;
   synth.frequency = frequency;
   synth.play();
@@ -116,13 +134,25 @@ function playDrum() {
   }
 }
 
+function changeScale(newScale) {
+  freqs = newScale;
+  setTimeout(function() {
+    if (freqs === aMajor) {
+      changeScale(eMajor);
+    } else {
+      changeScale(aMajor);
+    }
+  }, 11520);
+}
+
 
 function mousePressed() {
   if (!play) {
     playRandomNote();
 
-    setInterval(playDrum, 240);
+    setInterval(playDrum, 480);
     play = true;
+    setTimeout(changeScale(eMajor), 11520);
   }
 
 
