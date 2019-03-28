@@ -61,8 +61,11 @@ function playNote(frequency) {
 }
 
 function playRandomNote() {
-  synth.stop();
-  playNote(freqs[floor(random(0, freqs.length))]);
+  let randomNote = freqs[floor(random(0, freqs.length))];
+  if (random() > 0.8) {
+    randomNote = 1;
+  }
+  playNote(randomNote);
   setTimeout(playRandomNote, floor(random(1, 4)) * 240);
 }
 
