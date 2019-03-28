@@ -152,7 +152,7 @@ function mousePressed() {
 
     setInterval(playDrum, 480);
     play = true;
-    setTimeout(changeScale(eMajor), 11520);
+    //setTimeout(changeScale(eMajor), 11520);
   }
 
 
