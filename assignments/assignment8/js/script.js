@@ -1,12 +1,11 @@
-var showFlickr = function(tag) {
-  var url = 'http://api.flickr.com/services/rest/?tags=' + tag;
-  $.getJSON(url);
-}
-
-var calculateStats = function(month) {
-  $('#stats').text('Statistics for ' + month);
-}
-
-var greeting = function() {
-  $('#greeting').text('Hello!');
+function getImage() {
+  var flickerAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+  $.getJSON(flickerAPI, {
+    tags: "juventus",
+    tagmode: "any",
+    format: "json"
+  }).done(function(data) {
+    var random = Math.floor(Math.random() * data.items.length);
+    $('img').attr('src', data.items[random].media.m);
+  });
 }
