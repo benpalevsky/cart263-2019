@@ -1,9 +1,12 @@
-/*****************
+var showFlickr = function(tag) {
+  var url = 'http://api.flickr.com/services/rest/?tags=' + tag;
+  $.getJSON(url);
+}
 
-Title of Project
-Author Name
+var calculateStats = function(month) {
+  $('#stats').text('Statistics for ' + month);
+}
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
-
-******************/
+var greeting = function() {
+  $('#greeting').text('Hello!');
+}
