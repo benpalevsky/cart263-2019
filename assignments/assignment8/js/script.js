@@ -30,7 +30,6 @@ function setup() {
   mgr.addScene(sliderYourNameScene);
   mgr.addScene(drawWallsScene);
   mgr.addScene(theGameIsOverScene);
-
   mgr.showScene(startMenuScene);
 
 }
