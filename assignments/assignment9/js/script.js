@@ -12,15 +12,10 @@ author, and this description to match your project!
 //
 // Description of setup
 
-function setup() {
-
-}
-
+function setup() {}
 
 // draw()
 //
 // Description of draw()
 
-function draw() {
-
-}
+function draw() {}
