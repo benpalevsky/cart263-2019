@@ -3,8 +3,28 @@
 var ball;
 var floor;
 let palette;
+let trivia;
+let correctAnswer;
+let wrongAnswers;
+const DIFFICULTY = {
+  EASY: 'easy',
+  MEDIUM: 'medium',
+  HARD: 'hard'
+}
+const TYPE = {
+  MULTIPLE: 'multiple',
+  BOOLEAN: 'boolean'
+}
+const category = {}
+let barriers = [];
+let correctIndex;
 //to apply force
 //ball.body.force = {x: 0.1,y: 0.1};
+//let people pick their own trivia?
+//the games progression can be through the categories
+//can even have the same physics game/game for each category so players can get better at iterations
+//lets start
+//answers should just randomly change
 function setup() {
   // put setup code here.
   palette = [
@@ -14,12 +34,20 @@ function setup() {
     [90, 83, 81],
     [220, 188, 108]
   ];
+  trivia = "";
+  correctAnswer = "";
+  incorrectAnswer = ["", "", ""];
   createCanvas(600, 600);
   strokeWeight(7);
   ball = matter.makeBall(width / 2, 40, 80);
   floor = matter.makeBarrier(width / 2, height, width, 50);
+  for (var i = 0; i < 3; i++) {
+    barriers.push(matter.makeBarrier((width / 4) * (i + 1), height, 50, 100));
+  }
   matter.mouseInteraction(canvas);
   getRandomPalette();
+  getRandomTriviaQuestion(9, DIFFICULTY.EASY, TYPE.MULTIPLE);
+  correctIndex = Math.floor(random(0, 4));
 }
 
 function draw() {
@@ -28,8 +56,26 @@ function draw() {
   stroke(palette[3]);
   fill(palette[1]);
   floor.show();
+  textAlign(CENTER);
+  textSize(32);
+  text(trivia, 0, height / 16, width, height);
+  for (var i = 0; i < barriers.length; i++) {
+    barriers[i].show();
+  }
+  let j = 0;
+  for (var i = 0; i < 4; i++) {
+    textSize(16);
+    textAlign(CENTER);
+    if (i === correctIndex) {
+      text(correctAnswer, ((width / 4) * i) - 20, height - height / 8, 200, 200);
+    } else {
+      text(incorrectAnswer[j], ((width / 4) * i) - 20, height - height / 8, 200, 200);
+      j++;
+    }
+  }
   fill(palette[2]);
   ball.show();
+  strokeWeight(0);
 }
 
 function getRandomPalette() {
@@ -47,4 +93,14 @@ function getRandomPalette() {
   http.send(JSON.stringify(data));
 }
 
-function getRandomTrivia() {}
+function getRandomTriviaQuestion(category, difficulty, type) {
+  request = $.getJSON('https://opentdb.com/api.php?amount=1&category=' + category + '&difficulty=' + difficulty + '&type=' + type).done(function() {
+    trivia = request.responseJSON.results[0].question;
+    answers = request.responseJSON.results;
+    correctAnswer = answers[0].correct_answer;
+    incorrectAnswer = answers[0].incorrect_answers;
+    trivia = trivia.replace(/&quot;/g, '\"');
+    trivia = trivia.replace(/&#039;/g, '\'');
+    trivia = trivia.replace(/&shy;/g, '-');
+  });
+}
