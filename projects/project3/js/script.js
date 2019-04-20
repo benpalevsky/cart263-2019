@@ -113,11 +113,12 @@ function game1() {
     engine.world.gravity.y = 0;
   }
   this.draw = function() {
+
     background(palette[2]);
-    fill(0);
     strokeWeight(5);
     this.handleInput();
     renderBodies();
+
   }
 
   this.handleInput = function() {
