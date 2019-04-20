@@ -98,15 +98,25 @@ function game1() {
     stroke(palette[1]);
     // create an engine
     engine = Engine.create();
+
     player = {
       body: Bodies.circle(80, 250, 20),
       x_raw: 0,
       y_raw: 0
     };
 
+    topWall = Bodies.rectangle(400, 50, 720, 20, {isStatic: true});
+    leftWall = Bodies.rectangle(50, 210, 20, 300, {isStatic: true});
+    rightWall = Bodies.rectangle(750, 210, 20, 300, {isStatic: true});
+    bottomWall = Bodies.rectangle(400, 350, 720, 20, {isStatic: true});
+
     // add all of the bodies to the world
     World.add(engine.world, [
-      player
+      player,
+      topWall,
+      leftWall,
+      rightWall,
+      bottomWall
     ]);
 
     Engine.run(engine); //run the engine
