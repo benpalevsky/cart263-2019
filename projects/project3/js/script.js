@@ -3,7 +3,11 @@ let mgr;
 let canvasWidth = 800;
 let canvasHeight = 600;
 
-let currentTrivia;
+let results; //raw data from the trivia API call
+let trivia; //the String for the question, parsed from results
+let correctAnswer; //the String for the right answer, parsed from results
+let incorrectAnswer; //the String for the wrong answer, parsed from results
+let answers; //an array of Strings containing incorrectAnswer and correctAnswer
 
 const DIFFICULTY = {
   EASY: 'easy',
@@ -14,7 +18,6 @@ const TYPE = {
   MULTIPLE: 'multiple',
   BOOLEAN: 'boolean'
 }
-
 const CATEGORY = {
   GENERAL_KNOWLEDGE : 9,
   BOOKS: 10,
@@ -153,12 +156,12 @@ function game1() {
 
 function getRandomTriviaQuestion(category, difficulty, type) {
   request = $.getJSON('https://opentdb.com/api.php?amount=1&category=' + category + '&difficulty=' + difficulty + '&type=' + type).done(function() {
-    currentTrivia = request.responseJSON.results[0].question;
-    answers = request.responseJSON.results;
-    correctAnswer = answers[0].correct_answer;
-    incorrectAnswer = answers[0].incorrect_answers;
-    currentTrivia = currentTrivia.replace(/&quot;/g, '\"');
-    currentTrivia = currentTrivia.replace(/&#039;/g, '\'');
-    currentTrivia = currentTrivia.replace(/&shy;/g, '-');
+    trivia = request.responseJSON.results[0].question;
+    results = request.responseJSON.results;
+    correctAnswer = results[0].correct_answer;
+    incorrectAnswer = results[0].incorrect_answers;
+    trivia = currentTrivia.replace(/&quot;/g, '\"');
+    trivia = currentTrivia.replace(/&#039;/g, '\'');
+    trivia = currentTrivia.replace(/&shy;/g, '-');
   });
 }
