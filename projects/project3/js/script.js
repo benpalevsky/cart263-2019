@@ -3,6 +3,8 @@ let mgr;
 let canvasWidth = 800,
   canvasHeight = 600;
 
+let palette; //color palette variable pulled from an API
+
 let results, //raw data from the trivia API call
     trivia, //the String for the question, parsed from results
     correctAnswer, //the String for the right answer, parsed from results
@@ -188,4 +190,20 @@ function decodeEntities(encodedString) {
     var textArea = document.createElement('textarea');
     textArea.innerHTML = encodedString;
     return textArea.value;
+}
+
+
+function getRandomPalette() {
+  var url = "http://colormind.io/api/";
+  var data = {
+    model: "default",
+  }
+  var http = new XMLHttpRequest();
+  http.onreadystatechange = function() {
+    if (http.readyState == 4 && http.status == 200) {
+      palette = JSON.parse(http.responseText).result;
+    }
+  }
+  http.open("POST", url, true);
+  http.send(JSON.stringify(data));
 }
