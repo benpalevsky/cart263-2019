@@ -87,7 +87,6 @@ function game1() {
 
     getRandomTriviaQuestion(CATEGORY.CELEBRITIES, DIFFICULTY.HARD, TYPE.MULTIPLE);
 
-    stroke(palette[1]);
     // create an engine
     engine = Engine.create();
 
@@ -114,14 +113,18 @@ function game1() {
 
     background(palette[2]);
     textSize(triviaTextSize);
-    strokeWeight(0);
-    text(trivia, 10, canvasHeight/4, canvasWidth, canvasHeight);
 
     textAlign(CENTER);
     strokeWeight(5);
     this.handleInput();
     this.updatePhysics();
+    stroke(palette[1]);
     renderBodies();
+    fill(palette[3]);
+    stroke(palette[0]);
+    strokeWeight(10);
+    text(trivia, 10, canvasHeight/4, canvasWidth, canvasHeight);
+
 
   }
 
@@ -259,7 +262,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
 
 function setTriviaTextSize(area){
   while (textWidth(trivia) * textSize(trivia) < area / 2){
-    triviaTextSize++;
+    triviaTextSize+=10;
     textSize(triviaTextSize);
   }
 }
