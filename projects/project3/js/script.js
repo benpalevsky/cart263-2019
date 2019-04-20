@@ -8,6 +8,7 @@ let results, //raw data from the trivia API call
     correctAnswer, //the String for the right answer, parsed from results
     incorrectAnswers, //the String for the wrong answer, parsed from results
     answers, //an array of Strings containing incorrectAnswer and correctAnswer
+    letters,
     correctAnswerIndex; //index of the correct answer in the answers array
 
 let Engine = Matter.Engine,
@@ -83,11 +84,7 @@ renderBody = function(shape, color) {
 
 function game1() {
 
-
   let player;
-  let correctAnswer;
-  let incorrectAnswer;
-
 
   this.setup = function() {
 
@@ -95,14 +92,12 @@ function game1() {
     // create an engine
     engine = Engine.create();
 
-    ball = Bodies.circle(80, 250, 20);
-    cannon = Bodies.circle(90, 300, 20);
+    player = Bodies.circle(80, 250, 20);
 
 
     // add all of the bodies to the world
     World.add(engine.world, [
-      cannon,
-      ball
+      player
     ]);
 
     // run the engine
@@ -117,8 +112,7 @@ function game1() {
     fill(0);
     strokeWeight(5);
 
-    renderBody(cannon, '#00AA00');
-    renderBody(ball, 255);
+    renderBody(player, '#00AA00');
 
   }
 
@@ -171,13 +165,16 @@ function getRandomTriviaQuestion(category, difficulty, type) {
     correctAnswerIndex = floor(random(0,3));
 
     answers = [];
+    letters = [];
 
     var j = 0;
     for (var i = 0; i < 4; i++) {
       if (i === correctAnswerIndex){
         answers.push(correctAnswer);
+        letters.push(correctAnswer);
       } else {
         answers.push(incorrectAnswers[j]);
+        letters.push(incorrectAnswers[j]);
         j++;
       }
     }
