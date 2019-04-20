@@ -117,6 +117,7 @@ function game1() {
     background(palette[2]);
     strokeWeight(5);
     this.handleInput();
+    this.updatePhysics();
     renderBodies();
 
   }
@@ -124,20 +125,33 @@ function game1() {
   this.handleInput = function() {
     //up
     if (keyIsDown(38) || keyIsDown(87)){
-      player.y_raw += 0.01;
+      player.y_raw -= 0.0001;
     }
     //down
     else if (keyIsDown(40) || keyIsDown (83)){
-      player.y_raw -= 0.01;
+      player.y_raw += 0.0001;
     }
+    //neither
+    else {
+      player.y_raw = 0;
+    }
+
     //left
     if (keyIsDown(37) || keyIsDown(65)){
-      player.x_raw -= 0.01;
+      player.x_raw -= 0.0001;
     }
     //right
     else if (keyIsDown(39) || keyIsDown (68)){
-      player.x_raw += 0.01;
+      player.x_raw += 0.0001;
     }
+    //neither
+    else {
+      player.x_raw = 0;
+    }
+  }
+
+  this.updatePhysics = function(){
+    player.body.force = {x: player.x_raw, y: player.y_raw};
   }
 
 
