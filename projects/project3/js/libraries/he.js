@@ -29,7 +29,7 @@
 	var regexBmpWhitelist = /<%= regexBmpWhitelist %>/g;
 
 	var regexEncodeNonAscii = /<%= regexEncodeNonAscii %>/g;
-	var encodeMap = <%= encodeMap %>;
+	var encodeMap = /<%= encodeMap %>/g;
 
 	var regexEscape = /["&'<>`]/g;
 	var escapeMap = {
@@ -50,22 +50,12 @@
 	};
 
 	var regexInvalidEntity = /&#(?:[xX][^a-fA-F0-9]|[^0-9xX])/;
-	var regexInvalidRawCodePoint = /<%= regexInvalidRawCodePoints %>/;
-	var regexDecode = /<%=
-		regexNamedReferenceSource
-	%>|<%=
-		regexLegacyReferenceSource
-	%>|<%=
-		regexDecimalEscapeSource
-	%>|<%=
-		regexHexadecimalEscapeSource
-	%>|<%=
-		regexAmbiguousAmpersand
-	%>/g;
-	var decodeMap = <%= decodeMap %>;
-	var decodeMapLegacy = <%= decodeMapLegacy %>;
-	var decodeMapNumeric = <%= decodeMapOverrides %>;
-	var invalidReferenceCodePoints = <%= invalidReferenceCodePoints %>;
+	var regexInvalidRawCodePoint = /<%= regexInvalidRawCodePoints %>/g;
+	var regexDecode = /<%=regexNamedReferenceSource%>|<%=regexLegacyReferenceSource%>|<%=regexDecimalEscapeSource%>|<%=regexHexadecimalEscapeSource%>|<%=regexAmbiguousAmpersand%>/g;
+	var decodeMap = /<%= decodeMap %>/g;
+	var decodeMapLegacy = /<%= decodeMapLegacy %>/g;
+	var decodeMapNumeric = /<%= decodeMapOverrides %>/g;
+	var invalidReferenceCodePoints = /<%= invalidReferenceCodePoints %>/g;
 
 	/*--------------------------------------------------------------------------*/
 
