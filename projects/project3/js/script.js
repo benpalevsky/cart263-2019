@@ -91,7 +91,6 @@ renderBody = function(shape, color) {
 
 function game1() {
 
-  let player;
 
   this.setup = function() {
 
@@ -99,7 +98,11 @@ function game1() {
     stroke(palette[1]);
     // create an engine
     engine = Engine.create();
-    player = Bodies.circle(80, 250, 20);
+    player = {
+      body: Bodies.circle(80, 250, 20),
+      x_raw: 0,
+      y_raw: 0
+    };
 
     // add all of the bodies to the world
     World.add(engine.world, [
@@ -114,23 +117,30 @@ function game1() {
     background(palette[2]);
     fill(0);
     strokeWeight(5);
-    renderBody(player, palette[0]);
+    renderBody(player.body, palette[0]);
     this.handleInput();
 
   }
 
   this.handleInput = function() {
+    //up
     if (keyIsDown(38) || keyIsDown(87)){
-      console.log(keyIsDown);
-    } else if (keyIsDown(40) || keyIsDown (83)){
-      console.log(keyIsDown);
+      player.y_raw += 0.01;
     }
+    //down
+    else if (keyIsDown(40) || keyIsDown (83)){
+      player.y_raw -= 0.01;
+    }
+    //left
     if (keyIsDown(37) || keyIsDown(65)){
-      console.log(keyIsDown);
-    } else if (keyIsDown(39) || keyIsDown (68)){
-      console.log(keyIsDown);
+      player.x_raw -= 0.01;
+    }
+    //right
+    else if (keyIsDown(39) || keyIsDown (68)){
+      player.x_raw += 0.01;
     }
   }
+
 
   this.handleMouseInput = function() {
     mousePressed = function() {}
