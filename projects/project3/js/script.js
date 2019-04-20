@@ -78,17 +78,6 @@ function draw() {
   mgr.showNextScene(game1);
 }
 
-renderBody = function(shape, color) {
-  var vertices = shape.vertices;
-  fill(color);
-  beginShape();
-  for (var i = 0; i < vertices.length; i++) {
-    vertex(vertices[i].x, vertices[i].y);
-  }
-
-  endShape();
-}
-
 function game1() {
 
 
@@ -112,7 +101,7 @@ function game1() {
 
     // add all of the bodies to the world
     World.add(engine.world, [
-      player,
+      player.body,
       topWall,
       leftWall,
       rightWall,
@@ -127,9 +116,8 @@ function game1() {
     background(palette[2]);
     fill(0);
     strokeWeight(5);
-    renderBody(player.body, palette[0]);
     this.handleInput();
-
+    renderBodies();
   }
 
   this.handleInput = function() {
@@ -185,6 +173,23 @@ function game1() {
     }
   }
 
+}
+
+function renderBodies(){
+  for (var i = 0; i < engine.world.bodies.length; i++) {
+    renderBody(engine.world.bodies[i], palette[0]);
+  }
+}
+
+function renderBody(shape, color) {
+  var vertices = shape.vertices;
+  fill(color);
+  beginShape();
+  for (var i = 0; i < vertices.length; i++) {
+    vertex(vertices[i].x, vertices[i].y);
+  }
+
+  endShape();
 }
 
 function getRandomTriviaQuestion(category, difficulty, type) {
