@@ -3,6 +3,45 @@ let mgr;
 let canvasWidth = 800;
 let canvasHeight = 600;
 
+let currentTrivia;
+
+const DIFFICULTY = {
+  EASY: 'easy',
+  MEDIUM: 'medium',
+  HARD: 'hard'
+}
+const TYPE = {
+  MULTIPLE: 'multiple',
+  BOOLEAN: 'boolean'
+}
+
+const CATEGORY = {
+  GENERAL_KNOWLEDGE : 9,
+  BOOKS: 10,
+  FILM: 11,
+  MUSIC: 12,
+  THEATRE: 13,
+  TELEVISION: 14,
+  VIDEO_GAMES: 15,
+  BOARD_GAMES: 16,
+  NATURE: 17,
+  COMPUTERS: 18,
+  MATH: 19,
+  MYTHOLOGY: 20,
+  SPORTS: 21,
+  GEOGRAPHY: 22,
+  HISTORY: 23,
+  POLITICS: 24,
+  ART: 25,
+  CELEBRITIES: 26,
+  ANIMALS: 27,
+  VEHICLES: 28,
+  COMICS: 29,
+  GADGETS: 30,
+  ANIME: 31,
+  CARTOONS: 32
+}
+
 function preload() {
 
 
@@ -114,12 +153,12 @@ function game1() {
 
 function getRandomTriviaQuestion(category, difficulty, type) {
   request = $.getJSON('https://opentdb.com/api.php?amount=1&category=' + category + '&difficulty=' + difficulty + '&type=' + type).done(function() {
-    trivia = request.responseJSON.results[0].question;
+    currentTrivia = request.responseJSON.results[0].question;
     answers = request.responseJSON.results;
     correctAnswer = answers[0].correct_answer;
     incorrectAnswer = answers[0].incorrect_answers;
-    trivia = trivia.replace(/&quot;/g, '\"');
-    trivia = trivia.replace(/&#039;/g, '\'');
-    trivia = trivia.replace(/&shy;/g, '-');
+    currentTrivia = currentTrivia.replace(/&quot;/g, '\"');
+    currentTrivia = currentTrivia.replace(/&#039;/g, '\'');
+    currentTrivia = currentTrivia.replace(/&shy;/g, '-');
   });
 }
