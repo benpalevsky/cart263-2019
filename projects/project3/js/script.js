@@ -68,7 +68,7 @@ function preload() {
 
 function setup() {
 
-  createCanvas(800, 600);
+  createCanvas(canvasWidth, canvasHeight);
   mgr = new SceneManager();
   mgr.addScene(game1);
 }
@@ -94,18 +94,11 @@ function game1() {
       y_raw: 0
     };
 
-    topWall = Bodies.rectangle(400, 50, 720, 20, {isStatic: true});
-    leftWall = Bodies.rectangle(50, 210, 20, 300, {isStatic: true});
-    rightWall = Bodies.rectangle(750, 210, 20, 300, {isStatic: true});
-    bottomWall = Bodies.rectangle(400, 350, 720, 20, {isStatic: true});
+    createWalls();
 
     // add all of the bodies to the world
     World.add(engine.world, [
-      player.body,
-      topWall,
-      leftWall,
-      rightWall,
-      bottomWall
+      player.body
     ]);
 
     Engine.run(engine); //run the engine
@@ -144,7 +137,7 @@ function game1() {
     else if (keyIsDown(39) || keyIsDown (68)){
       player.x_raw += 0.0001;
     }
-    //neither
+
     else {
       player.x_raw = 0;
     }
@@ -205,6 +198,22 @@ function renderBody(shape, color) {
   }
 
   endShape();
+}
+
+function createWalls(){
+
+  topWall = Bodies.rectangle(0, 0, canvasWidth * 2, 20, {isStatic: true});
+  leftWall = Bodies.rectangle(0, 0, 20, canvasHeight * 2, {isStatic: true});
+  rightWall = Bodies.rectangle(canvasWidth, 0, 20, canvasHeight * 2, {isStatic: true});
+  bottomWall = Bodies.rectangle(0, canvasHeight, canvasWidth * 2, 20, {isStatic: true});
+
+  World.add(engine.world, [
+    topWall,
+    leftWall,
+    rightWall,
+    bottomWall
+  ]);
+
 }
 
 function getRandomTriviaQuestion(category, difficulty, type) {
