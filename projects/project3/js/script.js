@@ -184,6 +184,9 @@ function getRandomTriviaQuestion(category, difficulty, type) {
   });
 }
 
+
+//credit to this thread
+//https://stackoverflow.com/questions/3700326/decode-amp-back-to-in-javascript
 function decodeEntities(encodedString) {
     var textArea = document.createElement('textarea');
     textArea.innerHTML = encodedString;
