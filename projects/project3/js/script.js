@@ -18,6 +18,8 @@ let results, //raw data from the trivia API call
     letters,
     correctAnswerIndex; //index of the correct answer in the answers array
 
+let triviaTextSize = 12;
+
 let Engine = Matter.Engine,
   Render = Matter.Render,
   World = Matter.World,
@@ -84,6 +86,7 @@ function game1() {
   this.setup = function() {
 
     getRandomTriviaQuestion(CATEGORY.CELEBRITIES, DIFFICULTY.HARD, TYPE.MULTIPLE);
+
     stroke(palette[1]);
     // create an engine
     engine = Engine.create();
@@ -104,11 +107,17 @@ function game1() {
     Engine.run(engine); //run the engine
 
     engine.world.gravity.y = 0;
+
   }
   this.draw = function() {
 
+
     background(palette[2]);
-    text(trivia, 20, 20, canvasWidth, canvasHeight);
+    textSize(triviaTextSize);
+    strokeWeight(0);
+    text(trivia, 10, canvasHeight/4, canvasWidth, canvasHeight);
+
+    textAlign(CENTER);
     strokeWeight(5);
     this.handleInput();
     this.updatePhysics();
@@ -244,7 +253,15 @@ function getRandomTriviaQuestion(category, difficulty, type) {
         j++;
       }
     }
+    setTriviaTextSize((canvasWidth * canvasHeight) / 2);
   });
+}
+
+function setTriviaTextSize(area){
+  while (textWidth(trivia) * textSize(trivia) < area / 2){
+    triviaTextSize++;
+    textSize(triviaTextSize);
+  }
 }
 
 
