@@ -112,7 +112,6 @@ function game1() {
 
 
     background(palette[2]);
-    textSize(triviaTextSize);
 
     textAlign(CENTER);
     strokeWeight(5);
@@ -122,7 +121,6 @@ function game1() {
     renderBodies();
     fill(palette[3]);
     stroke(palette[0]);
-    strokeWeight(10);
     text(trivia, 10, canvasHeight/4, canvasWidth, canvasHeight);
 
 
