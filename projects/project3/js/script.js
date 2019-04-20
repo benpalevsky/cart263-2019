@@ -83,7 +83,7 @@ function game1() {
 
   this.setup = function() {
 
-
+    getRandomTriviaQuestion(CATEGORY.CELEBRITIES, DIFFICULTY.HARD, TYPE.MULTIPLE);
     stroke(palette[1]);
     // create an engine
     engine = Engine.create();
@@ -108,6 +108,7 @@ function game1() {
   this.draw = function() {
 
     background(palette[2]);
+    text(trivia, 20, 20, canvasWidth, canvasHeight);
     strokeWeight(5);
     this.handleInput();
     this.updatePhysics();
