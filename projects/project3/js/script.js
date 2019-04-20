@@ -100,7 +100,7 @@ function game1() {
     // create an engine
     engine = Engine.create();
     player = Bodies.circle(80, 250, 20);
-    
+
     // add all of the bodies to the world
     World.add(engine.world, [
       player
@@ -114,9 +114,22 @@ function game1() {
     background(palette[2]);
     fill(0);
     strokeWeight(5);
-
     renderBody(player, palette[0]);
+    this.handleInput();
 
+  }
+
+  this.handleInput = function() {
+    if (keyIsDown(38) || keyIsDown(87)){
+      console.log(keyIsDown);
+    } else if (keyIsDown(40) || keyIsDown (83)){
+      console.log(keyIsDown);
+    }
+    if (keyIsDown(37) || keyIsDown(65)){
+      console.log(keyIsDown);
+    } else if (keyIsDown(39) || keyIsDown (68)){
+      console.log(keyIsDown);
+    }
   }
 
   this.handleMouseInput = function() {
