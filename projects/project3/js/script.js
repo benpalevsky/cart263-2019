@@ -1,14 +1,21 @@
 let mgr;
 
-let canvasWidth = 800;
-let canvasHeight = 600;
+let canvasWidth = 800,
+  canvasHeight = 600;
 
-let results; //raw data from the trivia API call
-let trivia; //the String for the question, parsed from results
-let correctAnswer; //the String for the right answer, parsed from results
-let incorrectAnswers; //the String for the wrong answer, parsed from results
-let answers; //an array of Strings containing incorrectAnswer and correctAnswer
-let correctAnswerIndex //index of the correct answer in the answers array
+let results, //raw data from the trivia API call
+    trivia, //the String for the question, parsed from results
+    correctAnswer, //the String for the right answer, parsed from results
+    incorrectAnswers, //the String for the wrong answer, parsed from results
+    answers, //an array of Strings containing incorrectAnswer and correctAnswer
+    correctAnswerIndex; //index of the correct answer in the answers array
+
+let Engine = Matter.Engine,
+  Render = Matter.Render,
+  World = Matter.World,
+  Bodies = Matter.Bodies,
+  Body = Matter.Body;
+
 
 const DIFFICULTY = {
   EASY: 'easy',
@@ -81,11 +88,6 @@ function game1() {
   let correctAnswer;
   let incorrectAnswer;
 
-  let Engine = Matter.Engine,
-    Render = Matter.Render,
-    World = Matter.World,
-    Bodies = Matter.Bodies,
-    Body = Matter.Body;
 
   this.setup = function() {
 
