@@ -1,0 +1,28 @@
+body
+{
+    margin: 10px;
+
+    text-align: center;
+}
+
+canvas
+{
+    margin: 20px auto;
+}
+
+button
+{
+    font-family: 'JosefinSlab-Regular';
+    font-size: 32px;
+    font-weight: 300;
+
+    margin: 10px;
+    padding: 10px;
+
+    cursor: pointer;
+
+    color: white;
+    border: none;
+    outline: none;
+    background: orange;
+}
