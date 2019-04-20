@@ -16,10 +16,6 @@ function setup() {
 }
 
 function draw() {
-  //hello
-  //next comment!
-  //comment three!
-  mgr.draw();
   mgr.draw();
   mgr.showNextScene(game1);
 }
@@ -114,4 +110,16 @@ function game1() {
     }
   }
 
+}
+
+function getRandomTriviaQuestion(category, difficulty, type) {
+  request = $.getJSON('https://opentdb.com/api.php?amount=1&category=' + category + '&difficulty=' + difficulty + '&type=' + type).done(function() {
+    trivia = request.responseJSON.results[0].question;
+    answers = request.responseJSON.results;
+    correctAnswer = answers[0].correct_answer;
+    incorrectAnswer = answers[0].incorrect_answers;
+    trivia = trivia.replace(/&quot;/g, '\"');
+    trivia = trivia.replace(/&#039;/g, '\'');
+    trivia = trivia.replace(/&shy;/g, '-');
+  });
 }
