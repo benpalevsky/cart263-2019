@@ -18,6 +18,7 @@ function setup() {
 function draw() {
   //hello
   //next comment!
+  //comment three!
   mgr.draw();
   mgr.draw();
   mgr.showNextScene(game1);
