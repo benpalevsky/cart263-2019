@@ -164,7 +164,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
     incorrectAnswers = results[0].incorrect_answers;
 
     for (var i = 0; i < incorrectAnswers.length; i++) {
-      incorrectAnswers[0] = decodeEntities(incorrectAnswers[0]);
+      incorrectAnswers[i] = decodeEntities(incorrectAnswers[i ]);
     }
     correctAnswerIndex = floor(random(0,3));
 
@@ -179,8 +179,6 @@ function getRandomTriviaQuestion(category, difficulty, type) {
         j++;
       }
     }
-
-
   });
 }
 
