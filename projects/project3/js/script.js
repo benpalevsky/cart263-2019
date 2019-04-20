@@ -3,7 +3,12 @@ let mgr;
 let canvasWidth = 800,
   canvasHeight = 600;
 
-let palette; //color palette variable pulled from an API
+let palette = //color palette variable pulled from an API
+    [[43, 42, 44],
+    [235, 237, 182],
+    [171, 127, 110],
+    [90, 83, 81],
+    [220, 188, 108]];
 
 let results, //raw data from the trivia API call
     trivia, //the String for the question, parsed from results
@@ -91,30 +96,26 @@ function game1() {
   this.setup = function() {
 
 
+    stroke(palette[1]);
     // create an engine
     engine = Engine.create();
-
     player = Bodies.circle(80, 250, 20);
-
-
+    
     // add all of the bodies to the world
     World.add(engine.world, [
       player
     ]);
 
-    // run the engine
-    Engine.run(engine);
-
-    // run the renderer
+    Engine.run(engine); //run the engine
 
     engine.world.gravity.y = 0;
   }
   this.draw = function() {
-    background(100)
+    background(palette[2]);
     fill(0);
     strokeWeight(5);
 
-    renderBody(player, '#00AA00');
+    renderBody(player, palette[0]);
 
   }
 
