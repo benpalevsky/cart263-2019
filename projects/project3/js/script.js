@@ -6,8 +6,8 @@ let canvasHeight = 600;
 let results; //raw data from the trivia API call
 let trivia; //the String for the question, parsed from results
 let correctAnswer; //the String for the right answer, parsed from results
-let incorrectAnswer; //the String for the wrong answer, parsed from results
-let answers = []; //an array of Strings containing incorrectAnswer and correctAnswer
+let incorrectAnswers; //the String for the wrong answer, parsed from results
+let answers; //an array of Strings containing incorrectAnswer and correctAnswer
 let correctAnswerIndex //index of the correct answer in the answers array
 
 const DIFFICULTY = {
@@ -159,23 +159,33 @@ function getRandomTriviaQuestion(category, difficulty, type) {
   request = $.getJSON('https://opentdb.com/api.php?amount=1&category=' + category + '&difficulty=' + difficulty + '&type=' + type).done(function() {
     results = request.responseJSON.results;
 
-    trivia = results[0].question;
-    trivia = trivia.replace(/&quot;/g, '\"');
-    trivia = trivia.replace(/&#039;/g, '\'');
-    trivia = trivia.replace(/&shy;/g, '-');
-    correctAnswer = results[0].correct_answer;
-    incorrectAnswer = results[0].incorrect_answers;
+    trivia = decodeEntities(results[0].question);
+    correctAnswer = decodeEntities(results[0].correct_answer);
+    incorrectAnswers = results[0].incorrect_answers;
+
+    for (var i = 0; i < incorrectAnswers.length; i++) {
+      incorrectAnswers[0] = decodeEntities(incorrectAnswers[0]);
+    }
     correctAnswerIndex = floor(random(0,3));
+
+    answers = [];
+
     var j = 0;
     for (var i = 0; i < 4; i++) {
       if (i === correctAnswerIndex){
         answers.push(correctAnswer);
       } else {
-        answers.push(incorrectAnswer[j]);
+        answers.push(incorrectAnswers[j]);
         j++;
       }
     }
 
 
   });
+}
+
+function decodeEntities(encodedString) {
+    var textArea = document.createElement('textarea');
+    textArea.innerHTML = encodedString;
+    return textArea.value;
 }
