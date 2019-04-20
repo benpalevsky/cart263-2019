@@ -113,7 +113,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
     correctAnswer = answers[0].correct_answer;
     incorrectAnswer = answers[0].incorrect_answers;
     trivia = trivia.replace(/&quot;/g, '\"');
-    trivia = trivia.replace(/&#039;/g, '\'');
     trivia = trivia.replace(/&shy;/g, '-');
+    trivia = trivia.replace(/&#039;/g, '\'');
   });
 }
