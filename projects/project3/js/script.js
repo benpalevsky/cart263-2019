@@ -4,7 +4,7 @@ let canvasWidth = 800,
   canvasHeight = 600;
 
 let synth, //variable for speech synthesis
-    currentSpokenWordIndex = 0, //index of current word
+    currentSpokenWordIndex = 0; //index of current word
 
 
 let palette = //color palette variable pulled from an API
@@ -23,7 +23,7 @@ let results, //raw data from the trivia API call
     letters, //an array of Strings, 'A' 'B' 'C' 'D'
     correctAnswerIndex; //index of the correct answer in the answers array
 
-let triviaTextSize = 12,
+let onScreenTextSize = 12,
     onScreenText = "";
 
 
@@ -108,8 +108,10 @@ function setup() {
         }, 750);
       }
     } else if (state.answerPeriod == 1){
-      
-
+      setTextSize((canvasWidth * canvasHeight) / 2);
+      onScreenText += letters[currentSpokenWordIndex] + " " + answers[currentSpokenWordIndex];
+      synth.speak(onScreenText);
+      currentSpokenWordIndex++;
     }
   }
 
@@ -302,7 +304,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
       }
     }
 
-    setTriviaTextSize((canvasWidth * canvasHeight) / 2);
+    setTextSize((canvasWidth * canvasHeight) / 2, trivia);
     splitText();
     onScreenText = trivia;
     synth.speak(onScreenText);
@@ -310,10 +312,10 @@ function getRandomTriviaQuestion(category, difficulty, type) {
   });
 }
 
-function setTriviaTextSize(area){
-  while (textWidth(trivia) * textSize(trivia) < area / 2){
-    triviaTextSize+=10;
-    textSize(triviaTextSize);
+function setTextSize(area, text){
+  while (textWidth(text) * textSize(text) < area / 2){
+    onScreenTextSize+=10;
+    textSize(onScreenTextSize);
   }
 }
 
