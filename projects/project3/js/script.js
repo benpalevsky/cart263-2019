@@ -19,6 +19,7 @@ let results, //raw data from the trivia API call
     trivia, //the String for the question, parsed from results
     triviaWords, //an array of words from the trivia question
     correctAnswer, //the String for the right answer, parsed from results
+    correctLetter, //the associated letter for the correct answer
     incorrectAnswers, //the String for the wrong answer, parsed from results
     answers, //an array of Strings containing incorrectAnswer and correctAnswer
     letters, //an array of Strings, 'A' 'B' 'C' 'D'
@@ -255,7 +256,23 @@ function game1() {
 
 function startRound(){
 
+
+  letterBlocks = [];
+  for (var i = 0; i < answers.length; i++) {
+    letterBlocks.push({
+        body: Bodies.circle(random(0, canvasWidth), random(0, canvasHeight), 20, {isStatic: false}),
+        winner: ""
+      }
+    )
+    World.add(engine.world, [
+      letterBlocks[i].body
+    ]);
+  }
+
+
 }
+
+
 
 function renderBodies(){
   for (var i = 0; i < engine.world.bodies.length; i++) {
@@ -314,6 +331,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
       if (i === correctAnswerIndex){
         answers.push(correctAnswer);
         letters.push(String.fromCharCode(65+i));
+        correctLetter = String.fromCharCode(65+i);
       } else {
         answers.push(incorrectAnswers[j]);
         letters.push(String.fromCharCode(65+i));
