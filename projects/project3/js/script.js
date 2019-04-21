@@ -21,6 +21,7 @@ let results, //raw data from the trivia API call
     incorrectAnswers, //the String for the wrong answer, parsed from results
     answers, //an array of Strings containing incorrectAnswer and correctAnswer
     letters, //an array of Strings, 'A' 'B' 'C' 'D'
+    answerString = "", //one big string of letters and answers
     correctAnswerIndex; //index of the correct answer in the answers array
 
 let onScreenTextSize = 12,
@@ -108,7 +109,6 @@ function setup() {
         }, 750);
       }
     } else if (state.answerPeriod == 1){
-      setTextSize((canvasWidth * canvasHeight) / 2);
       onScreenText += letters[currentSpokenWordIndex] + " " + answers[currentSpokenWordIndex];
       synth.speak(onScreenText);
       currentSpokenWordIndex++;
@@ -302,6 +302,10 @@ function getRandomTriviaQuestion(category, difficulty, type) {
         letters.push(String.fromCharCode(65+i));
         j++;
       }
+    }
+
+    for (var i = 0; i < answers.length; i++) {
+      answerString += letters[i] + ". " + answers[i] + "\n"
     }
 
     setTextSize((canvasWidth * canvasHeight) / 2, trivia);
