@@ -4,7 +4,8 @@ let canvasWidth = 800,
   canvasHeight = 600;
 
 let synth, //variable for speech synthesis
-    wordIndex = 0; //index of current word
+    currentSpokenWordIndex = 0, //index of current word
+
 
 let palette = //color palette variable pulled from an API
     [[43, 42, 44],
@@ -90,23 +91,25 @@ function setup() {
 
   synth.onEnd = function (){
     if (state.questionPeriod == 1){ //length -1 because we don't know how to speak the "?" character
-        if (wordIndex < triviaWords.length - 1){
-        wordIndex++;
-        onScreenText += triviaWords[wordIndex] + " ";
-        synth.speak(triviaWords[wordIndex]);
+        if (currentSpokenWordIndex < triviaWords.length - 1){
+        currentSpokenWordIndex++;
+        onScreenText += triviaWords[currentSpokenWordIndex] + " ";
+        synth.speak(triviaWords[currentSpokenWordIndex]);
       } else {
         console.log("2b. Question period ended");
         state.questionPeriod = 0;
         state.answerPeriod = 1;
-        wordIndex = 0;
+        currentSpokenWordIndex = 0;
         setTimeout(function(){
-          synth.setRate(0.5);
+          synth.setRate(0.6);
           synth.speak("is it");
           synth.setRate(1);
+          onScreenText = "";
         }, 750);
       }
     } else if (state.answerPeriod == 1){
-      console.log("yes!");
+      
+
     }
   }
 
