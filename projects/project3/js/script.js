@@ -3,7 +3,8 @@ let mgr;
 let canvasWidth = 800,
   canvasHeight = 600;
 
-let synth; //variable for speech synthesis
+let synth, //variable for speech synthesis
+    wordIndex = 0; //index of current word
 
 let palette = //color palette variable pulled from an API
     [[43, 42, 44],
@@ -77,7 +78,18 @@ function setup() {
   mgr = new SceneManager();
   mgr.addScene(game1);
   synth = new p5.Speech();
-  synth.setRate(0.9);
+
+  synth.onEnd = function (){
+    if (wordIndex < triviaWords.length - 1){ //length -1 because we don't know how to speak the "?" character
+      wordIndex++;
+      synth.speak(triviaWords[wordIndex]);
+      trivia += triviaWords[wordIndex] + " ";
+    } else {
+      wordIndex = 0;
+    }
+  }
+
+  synth.setRate(1.5);
 
 }
 
@@ -262,6 +274,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
     }
     setTriviaTextSize((canvasWidth * canvasHeight) / 2);
     splitText();
+    synth.speak(trivia);
   });
 }
 
@@ -274,14 +287,8 @@ function setTriviaTextSize(area){
 
 function splitText(){
   triviaWords = split(trivia, " ");
-  trivia = "";
-  for (var i = 0; i < triviaWords.length; i++) {
-    trivia += triviaWords[i] + " ";
-  }
+  trivia = triviaWords[0] + " ";
 }
-
-
-
 
 //credit to this thread
 //https://stackoverflow.com/questions/3700326/decode-amp-back-to-in-javascript
