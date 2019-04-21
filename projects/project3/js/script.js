@@ -100,7 +100,7 @@ function setup() {
         synth.speak(triviaWords[currentSpokenWordIndex]);
       } else {
         console.log("2b. Question period ended");
-        console.log("3a. Answer peiod started")
+        console.log("3a. Answer period started")
         state.questionPeriod = 0;
         state.answerPeriod = 1;
         currentSpokenWordIndex = 0;
@@ -109,7 +109,7 @@ function setup() {
           synth.speak("is it");
           synth.setRate(1);
           onScreenText = "";
-          setTextSize((canvasWidth * canvasHeight) / 2, answerString);
+          setTextSize((canvasWidth * canvasHeight) / 2, answerString + answerString + answerString + answerString);
         }, 750);
       }
     } else if (state.answerPeriod == 1){
@@ -117,6 +117,13 @@ function setup() {
         onScreenText += letters[currentSpokenAnswerIndex] + ". " + answers[currentSpokenAnswerIndex] + "\n";
         synth.speak(letters[currentSpokenAnswerIndex] + ". " + answers[currentSpokenAnswerIndex]);
         if (currentSpokenAnswerIndex < 4) currentSpokenAnswerIndex++;
+      } else {
+        state.answerPeriod = 0;
+        state.round = 1;
+        onScreenText = "";
+        console.log("3b. Answer period ended")
+        console.log("4a. Round started")
+        startRound();
       }
     }
   }
@@ -173,7 +180,7 @@ function game1() {
     renderBodies();
     fill(palette[3]);
     stroke(palette[0]);
-    text(onScreenText, 10, canvasHeight/4, canvasWidth, canvasHeight);
+    text(onScreenText, 10, 40, canvasWidth, canvasHeight);
 
 
   }
@@ -246,6 +253,10 @@ function game1() {
 
 }
 
+function startRound(){
+
+}
+
 function renderBodies(){
   for (var i = 0; i < engine.world.bodies.length; i++) {
     renderBody(engine.world.bodies[i], palette[0]);
@@ -311,7 +322,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
     }
 
     for (var i = 0; i < answers.length; i++) {
-      answerString += letters[i] + ". " + answers[i] + " \n"
+      answerString += letters[i] + ". " + answers[i] + " \n";
     }
 
     setTextSize((canvasWidth * canvasHeight) / 2, trivia);
