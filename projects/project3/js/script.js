@@ -22,6 +22,7 @@ let results, //raw data from the trivia API call
     answers, //an array of Strings containing incorrectAnswer and correctAnswer
     letters, //an array of Strings, 'A' 'B' 'C' 'D'
     answerString = "", //one big string of letters and answers
+    answerStringWords,
     correctAnswerIndex; //index of the correct answer in the answers array
 
 let onScreenTextSize = 12,
@@ -98,9 +99,11 @@ function setup() {
         synth.speak(triviaWords[currentSpokenWordIndex]);
       } else {
         console.log("2b. Question period ended");
+        console.log("3a. Answer peiod started")
         state.questionPeriod = 0;
         state.answerPeriod = 1;
         currentSpokenWordIndex = 0;
+        setTextSize((canvasWidth * canvasHeight) / 2, answerString);
         setTimeout(function(){
           synth.setRate(0.6);
           synth.speak("is it");
@@ -310,7 +313,8 @@ function getRandomTriviaQuestion(category, difficulty, type) {
 
     setTextSize((canvasWidth * canvasHeight) / 2, trivia);
     splitText();
-    onScreenText = trivia;
+
+    onScreenText = triviaWords[0] + " ";
     synth.speak(onScreenText);
 
   });
@@ -325,7 +329,7 @@ function setTextSize(area, text){
 
 function splitText(){
   triviaWords = split(trivia, " ");
-  trivia = triviaWords[0] + " ";
+  answerStringWords = split(answerString, " ");
 }
 
 //credit to this thread
