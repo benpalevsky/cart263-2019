@@ -19,10 +19,17 @@ let results, //raw data from the trivia API call
     correctAnswer, //the String for the right answer, parsed from results
     incorrectAnswers, //the String for the wrong answer, parsed from results
     answers, //an array of Strings containing incorrectAnswer and correctAnswer
-    letters,
+    letters, //an array of Strings, 'A' 'B' 'C' 'D'
     correctAnswerIndex; //index of the correct answer in the answers array
 
 let triviaTextSize = 12;
+
+let state = {
+  startPeriod : 0,
+  questionPeriod : 0,
+  answerPeriod : 0,
+  roundPeriod: 0
+}
 
 let Engine = Matter.Engine,
   Render = Matter.Render,
@@ -80,12 +87,17 @@ function setup() {
   synth = new p5.Speech();
 
   synth.onEnd = function (){
-    if (wordIndex < triviaWords.length - 1){ //length -1 because we don't know how to speak the "?" character
-      wordIndex++;
-      synth.speak(triviaWords[wordIndex]);
-      trivia += triviaWords[wordIndex] + " ";
+    if (state.questionPeriod == 1){ //length -1 because we don't know how to speak the "?" character
+        if (wordIndex < triviaWords.length - 1){
+        wordIndex++;
+        synth.speak(triviaWords[wordIndex]);
+        trivia += triviaWords[wordIndex] + " ";
+        }
     } else {
-      wordIndex = 0;
+        console.log("2b. Question period ended");
+        state.questionPeriod = 0;
+        state.answerPeriod = 1;
+        wordIndex = 0;
     }
   }
 
@@ -102,6 +114,8 @@ function game1() {
 
 
   this.setup = function() {
+    console.log("1a. I've started");
+    state.startPeriod = 1;
 
     getRandomTriviaQuestion(CATEGORY.CELEBRITIES, DIFFICULTY.HARD, TYPE.MULTIPLE);
 
@@ -247,8 +261,11 @@ function createWalls(){
 
 function getRandomTriviaQuestion(category, difficulty, type) {
   request = $.getJSON('https://opentdb.com/api.php?amount=1&category=' + category + '&difficulty=' + difficulty + '&type=' + type).done(function() {
+    console.log("1b. Start period ended");
+    state.startPeriod = 0;
+    console.log("2a. Question period started");
+    state.questionPeriod = 1;
     results = request.responseJSON.results;
-
     trivia = decodeEntities(results[0].question);
     correctAnswer = decodeEntities(results[0].correct_answer);
     incorrectAnswers = results[0].incorrect_answers;
@@ -272,9 +289,11 @@ function getRandomTriviaQuestion(category, difficulty, type) {
         j++;
       }
     }
+
     setTriviaTextSize((canvasWidth * canvasHeight) / 2);
     splitText();
     synth.speak(trivia);
+
   });
 }
 
