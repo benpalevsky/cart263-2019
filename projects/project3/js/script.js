@@ -14,6 +14,7 @@ let palette = //color palette variable pulled from an API
 
 let results, //raw data from the trivia API call
     trivia, //the String for the question, parsed from results
+    triviaWords, //an array of words from the trivia question
     correctAnswer, //the String for the right answer, parsed from results
     incorrectAnswers, //the String for the wrong answer, parsed from results
     answers, //an array of Strings containing incorrectAnswer and correctAnswer
@@ -260,7 +261,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
       }
     }
     setTriviaTextSize((canvasWidth * canvasHeight) / 2);
-    synth.speak(trivia);
+    splitText();
   });
 }
 
@@ -270,6 +271,15 @@ function setTriviaTextSize(area){
     textSize(triviaTextSize);
   }
 }
+
+function splitText(){
+  triviaWords = split(trivia, " ");
+  trivia = "";
+  for (var i = 0; i < triviaWords.length; i++) {
+    trivia += triviaWords[i] + " ";
+  }
+}
+
 
 
 
