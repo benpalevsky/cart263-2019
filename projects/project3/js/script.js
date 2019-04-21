@@ -98,7 +98,7 @@ function setup() {
         state.answerPeriod = 1;
         wordIndex = 0;
       }
-    } 
+    }
   }
 
   synth.setRate(2);
@@ -282,10 +282,10 @@ function getRandomTriviaQuestion(category, difficulty, type) {
     for (var i = 0; i < 4; i++) {
       if (i === correctAnswerIndex){
         answers.push(correctAnswer);
-        letters.push(correctAnswer);
+        letters.push(String.fromCharCode(65+i));
       } else {
         answers.push(incorrectAnswers[j]);
-        letters.push(incorrectAnswers[j]);
+        letters.push(String.fromCharCode(65+i));
         j++;
       }
     }
