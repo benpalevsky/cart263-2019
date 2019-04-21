@@ -4,7 +4,8 @@ let canvasWidth = 800,
   canvasHeight = 600;
 
 let synth, //variable for speech synthesis
-    currentSpokenWordIndex = 0; //index of current word
+    currentSpokenWordIndex = 0, //index of current word
+    currentSpokenAnswerIndex = 0; //index of the current answer, be it A: balloon, B: dog, C: cat, D: horse
 
 
 let palette = //color palette variable pulled from an API
@@ -112,7 +113,7 @@ function setup() {
         }, 750);
       }
     } else if (state.answerPeriod == 1){
-      onScreenText += letters[currentSpokenWordIndex] + " " + answers[currentSpokenWordIndex];
+      onScreenText += answerStringWords[currentSpokenWordIndex];
       synth.speak(onScreenText);
       currentSpokenWordIndex++;
     }
@@ -308,7 +309,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
     }
 
     for (var i = 0; i < answers.length; i++) {
-      answerString += letters[i] + ". " + answers[i] + "\n"
+      answerString += letters[i] + ". " + answers[i] + " \n"
     }
 
     setTextSize((canvasWidth * canvasHeight) / 2, trivia);
