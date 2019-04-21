@@ -104,18 +104,20 @@ function setup() {
         state.questionPeriod = 0;
         state.answerPeriod = 1;
         currentSpokenWordIndex = 0;
-        setTextSize((canvasWidth * canvasHeight) / 2, answerString);
         setTimeout(function(){
           synth.setRate(0.6);
           synth.speak("is it");
           synth.setRate(1);
           onScreenText = "";
+          setTextSize((canvasWidth * canvasHeight) / 2, answerString);
         }, 750);
       }
     } else if (state.answerPeriod == 1){
-      onScreenText += answerStringWords[currentSpokenWordIndex];
-      synth.speak(onScreenText);
-      currentSpokenWordIndex++;
+      if (currentSpokenAnswerIndex < 4){
+        onScreenText += letters[currentSpokenAnswerIndex] + ". " + answers[currentSpokenAnswerIndex] + "\n";
+        synth.speak(letters[currentSpokenAnswerIndex] + ". " + answers[currentSpokenAnswerIndex]);
+        if (currentSpokenAnswerIndex < 4) currentSpokenAnswerIndex++;
+      }
     }
   }
 
