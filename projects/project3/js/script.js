@@ -92,13 +92,13 @@ function setup() {
         wordIndex++;
         synth.speak(triviaWords[wordIndex]);
         trivia += triviaWords[wordIndex] + " ";
-        }
-    } else {
+      } else {
         console.log("2b. Question period ended");
         state.questionPeriod = 0;
         state.answerPeriod = 1;
         wordIndex = 0;
-    }
+      }
+    } 
   }
 
   synth.setRate(2);
