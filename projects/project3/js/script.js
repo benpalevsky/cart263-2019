@@ -3,6 +3,8 @@ let mgr;
 let canvasWidth = 800,
   canvasHeight = 600;
 
+let synth; //variable for speech synthesis
+
 let palette = //color palette variable pulled from an API
     [[43, 42, 44],
     [235, 237, 182],
@@ -73,6 +75,9 @@ function setup() {
   createCanvas(canvasWidth, canvasHeight);
   mgr = new SceneManager();
   mgr.addScene(game1);
+  synth = new p5.Speech();
+  synth.setRate(0.9);
+
 }
 
 function draw() {
@@ -255,6 +260,7 @@ function getRandomTriviaQuestion(category, difficulty, type) {
       }
     }
     setTriviaTextSize((canvasWidth * canvasHeight) / 2);
+    synth.speak(trivia);
   });
 }
 
@@ -264,6 +270,7 @@ function setTriviaTextSize(area){
     textSize(triviaTextSize);
   }
 }
+
 
 
 //credit to this thread
