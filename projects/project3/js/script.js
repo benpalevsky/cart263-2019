@@ -89,7 +89,7 @@ function setup() {
     }
   }
 
-  synth.setRate(1.5);
+  synth.setRate(2);
 
 }
 
