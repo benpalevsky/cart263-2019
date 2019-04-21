@@ -22,7 +22,9 @@ let results, //raw data from the trivia API call
     letters, //an array of Strings, 'A' 'B' 'C' 'D'
     correctAnswerIndex; //index of the correct answer in the answers array
 
-let triviaTextSize = 12;
+let triviaTextSize = 12,
+    onScreenText = "";
+
 
 let state = {
   startPeriod : 0,
@@ -90,14 +92,21 @@ function setup() {
     if (state.questionPeriod == 1){ //length -1 because we don't know how to speak the "?" character
         if (wordIndex < triviaWords.length - 1){
         wordIndex++;
+        onScreenText += triviaWords[wordIndex] + " ";
         synth.speak(triviaWords[wordIndex]);
-        trivia += triviaWords[wordIndex] + " ";
       } else {
         console.log("2b. Question period ended");
         state.questionPeriod = 0;
         state.answerPeriod = 1;
         wordIndex = 0;
+        setTimeout(function(){
+          synth.setRate(0.5);
+          synth.speak("is it");
+          synth.setRate(1);
+        }, 750);
       }
+    } else if (state.answerPeriod == 1){
+      console.log("yes!");
     }
   }
 
@@ -153,7 +162,7 @@ function game1() {
     renderBodies();
     fill(palette[3]);
     stroke(palette[0]);
-    text(trivia, 10, canvasHeight/4, canvasWidth, canvasHeight);
+    text(onScreenText, 10, canvasHeight/4, canvasWidth, canvasHeight);
 
 
   }
@@ -292,7 +301,8 @@ function getRandomTriviaQuestion(category, difficulty, type) {
 
     setTriviaTextSize((canvasWidth * canvasHeight) / 2);
     splitText();
-    synth.speak(trivia);
+    onScreenText = trivia;
+    synth.speak(onScreenText);
 
   });
 }
