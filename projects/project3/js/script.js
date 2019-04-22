@@ -137,8 +137,8 @@ function setup() {
 }
 
 function draw() {
-  mgr.draw();
-  mgr.showNextScene(game1);
+  //mgr.draw();
+  //mgr.showNextScene(game1);
 }
 
 function game1() {
@@ -188,16 +188,22 @@ function game1() {
 
 
     if (state.roundPeriod === 1){
-      textSize(12);
-      translate(letterBlocks[0].body.position.x, letterBlocks[0].body.position.y);
-      rotate(letterBlocks[0].body.angle);
-      text(answers[0], letterBlocks[0].body.circleRadius, letterBlocks[0].body.circleRadius);
-      textSize(36);
-      text(letters[0], 0, 0);
 
 
 
+      //do a bunch of things with our letters
       for (var i = 0; i < letterBlocks.length; i++) {
+
+        push();
+        textSize(12);
+        translate(letterBlocks[i].body.position.x, letterBlocks[i].body.position.y);
+        rotate(letterBlocks[i].body.angle);
+        text(answers[i], letterBlocks[i].body.circleRadius, letterBlocks[i].body.circleRadius);
+        textSize(36);
+        text(letters[i], 0, 0);
+        pop();
+
+
         var collision = Matter.SAT.collides(player.body, letterBlocks[i].body);
         if (collision.collided){
           if (letterBlocks[i].winner === true){
@@ -243,40 +249,6 @@ function game1() {
 
   this.updatePhysics = function(){
     player.body.force = {x: player.x_raw, y: player.y_raw};
-  }
-
-
-  this.handleMouseInput = function() {
-    mousePressed = function() {}
-  }
-
-  mousePressed = function() {
-
-    if (mgr.scene.fnScene.name == "drawWallsScene") {
-      mouseDownPointX = mouseX;
-      mouseDownPointY = mouseY;
-      line(mouseDownPointX, mouseDownPointY, mouseX, mouseY);
-    }
-
-  }
-
-  mouseReleased = function() {
-    if (mgr.scene.fnScene.name == "drawWallsScene") {
-      mouseUpPointX = mouseX;
-      mouseUpPointY = mouseY;
-
-      let distX = mouseUpPointX - mouseDownPointX;
-      let distY = mouseUpPointY - mouseDownPointY;
-
-      let dist = sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
-
-      let angle = Math.atan(distY / distX);
-      let r = Bodies.rectangle(mouseDownPointX + (distX / 2), mouseDownPointY + (distY / 2), 20, dist, {isStatic: true});
-      Body.rotate(r, (angle + Math.PI / 2));
-
-      walls.push(r)
-      World.add(engine.world, r);
-    }
   }
 
 }
