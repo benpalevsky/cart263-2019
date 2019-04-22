@@ -32,11 +32,11 @@ let onScreenTextSize = 12,
     onScreenText = "";
 
 let rouletteTextOffset = -20;
-    rate = 100000000;
+    rate = 100;
     randomIndex = 0;
 
 let state = {
-  startPeriod : 0,
+  startPeriod : 1,
   questionPeriod : 0,
   answerPeriod : 0,
   roundPeriod: 0
@@ -102,6 +102,7 @@ function setup() {
 
     createCanvas(canvasWidth, canvasHeight);
     mgr = new SceneManager();
+    mgr.addScene(roulette);
     mgr.addScene(game1);
     synth = new p5.Speech();
     synth.onEnd = function() {
@@ -140,35 +141,65 @@ function setup() {
       }
     }
     synth.setRate(2);
-  
+
 
 }
 
 function draw() {
-  if (loadComplete) {
-    //mgr.draw();
-    //mgr.showNextScene(game1);
-    background(10, 140, 220);
-    textAlign(CENTER);
-    textSize(50);
-    if ((canvasHeight / 2) + rouletteTextOffset > canvasHeight) {
-      randomIndex = floor(random(0, Object.keys(CATEGORY).length));
-      text(Object.keys(CATEGORY)[randomIndex], canvasWidth / 2, canvasHeight / 4 + 20);
-      rouletteTextOffset = 0;
-      rate /= 2;
-    } else {
-      text(Object.keys(CATEGORY)[randomIndex], canvasWidth / 2, canvasHeight / 4 + rouletteTextOffset);
-    }
-    rouletteTextOffset += rate;
+
+  mgr.draw();
+  if (state.startPeriod == 1){
+    mgr.showScene(roulette);
+  } else {
+    mgr.showScene(game1);
   }
+
+}
+
+function roulette() {
+
+  this.setup = function(){
+    console.log("1a. I've started");
+    state.startPeriod = 1;
+  }
+
+  this.draw = function(){
+    if (loadComplete) {
+      background(10, 140, 220);
+      textAlign(CENTER);
+      textSize(72);
+      if (rate > 2) {
+        if ((canvasHeight / 2) + rouletteTextOffset > canvasHeight) {
+          randomIndex = floor(random(0, Object.keys(CATEGORY).length));
+          text(Object.keys(CATEGORY)[randomIndex], canvasWidth / 2, canvasHeight / 4 + 20);
+          rouletteTextOffset = 0;
+          rate /= 2;
+        } else {
+          text(Object.keys(CATEGORY)[randomIndex], canvasWidth / 2, canvasHeight / 4 + rouletteTextOffset);
+        }
+        rouletteTextOffset += rate;
+      } else {
+        text(Object.keys(CATEGORY)[randomIndex], canvasWidth / 2, canvasHeight / 4 + rouletteTextOffset);
+        rouletteTextOffset += rate;
+        if (rate > 0) rate-= 0.01;
+        else rate = 0;
+        if (rate === 0){
+          setTimeout(function() {
+            state.startPeriod = 0;
+            mgr.showScene(game1);
+          }, 750);
+        }
+      }
+    }
+  }
+
 }
 
 function game1() {
 
 
   this.setup = function() {
-    console.log("1a. I've started");
-    state.startPeriod = 1;
+
 
     getRandomTriviaQuestion(CATEGORY.CELEBRITIES, DIFFICULTY.HARD, TYPE.MULTIPLE);
 
