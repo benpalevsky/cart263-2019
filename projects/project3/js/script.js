@@ -1,4 +1,5 @@
 let mgr;
+let loadComplete = false;
 
 let canvasWidth = 800,
   canvasHeight = 600;
@@ -30,6 +31,9 @@ let results, //raw data from the trivia API call
 let onScreenTextSize = 12,
     onScreenText = "";
 
+let rouletteTextOffset = -20;
+    rate = 100000000;
+    randomIndex = 0;
 
 let state = {
   startPeriod : 0,
@@ -84,6 +88,10 @@ const CATEGORY = {
   CARTOONS: 32
 }
 
+$( document ).ready(function() {
+    loadComplete = true;
+});
+
 function preload() {
 
 
@@ -91,54 +99,68 @@ function preload() {
 
 function setup() {
 
-  createCanvas(canvasWidth, canvasHeight);
-  mgr = new SceneManager();
-  mgr.addScene(game1);
-  synth = new p5.Speech();
 
-  synth.onEnd = function (){
-    if (state.questionPeriod == 1){ //length -1 because we don't know how to speak the "?" character
-        if (currentSpokenWordIndex < triviaWords.length - 1){
-        currentSpokenWordIndex++;
-        onScreenText += triviaWords[currentSpokenWordIndex] + " ";
-        synth.speak(triviaWords[currentSpokenWordIndex]);
-      } else {
-        console.log("2b. Question period ended");
-        console.log("3a. Answer period started")
-        state.questionPeriod = 0;
-        state.answerPeriod = 1;
-        currentSpokenWordIndex = 0;
-        setTimeout(function(){
-          synth.setRate(0.6);
-          synth.speak("is it");
-          synth.setRate(1);
+    createCanvas(canvasWidth, canvasHeight);
+    mgr = new SceneManager();
+    mgr.addScene(game1);
+    synth = new p5.Speech();
+    synth.onEnd = function() {
+      if (state.questionPeriod == 1) { //length -1 because we don't know how to speak the "?" character
+        if (currentSpokenWordIndex < triviaWords.length - 1) {
+          currentSpokenWordIndex++;
+          onScreenText += triviaWords[currentSpokenWordIndex] + " ";
+          synth.speak(triviaWords[currentSpokenWordIndex]);
+        } else {
+          console.log("2b. Question period ended");
+          console.log("3a. Answer period started")
+          state.questionPeriod = 0;
+          state.answerPeriod = 1;
+          currentSpokenWordIndex = 0;
+          setTimeout(function() {
+            synth.setRate(0.6);
+            synth.speak("is it");
+            synth.setRate(1);
+            onScreenText = "";
+            setTextSize((canvasWidth * canvasHeight) / 2, answerString + answerString + answerString + answerString);
+          }, 750);
+        }
+      } else if (state.answerPeriod == 1) {
+        if (currentSpokenAnswerIndex < 4) {
+          onScreenText += letters[currentSpokenAnswerIndex] + ". " + answers[currentSpokenAnswerIndex] + "\n";
+          synth.speak(letters[currentSpokenAnswerIndex] + ". " + answers[currentSpokenAnswerIndex]);
+          if (currentSpokenAnswerIndex < 4) currentSpokenAnswerIndex++;
+        } else {
+          state.answerPeriod = 0;
+          state.roundPeriod = 1;
           onScreenText = "";
-          setTextSize((canvasWidth * canvasHeight) / 2, answerString + answerString + answerString + answerString);
-        }, 750);
-      }
-    } else if (state.answerPeriod == 1){
-      if (currentSpokenAnswerIndex < 4){
-        onScreenText += letters[currentSpokenAnswerIndex] + ". " + answers[currentSpokenAnswerIndex] + "\n";
-        synth.speak(letters[currentSpokenAnswerIndex] + ". " + answers[currentSpokenAnswerIndex]);
-        if (currentSpokenAnswerIndex < 4) currentSpokenAnswerIndex++;
-      } else {
-        state.answerPeriod = 0;
-        state.roundPeriod = 1;
-        onScreenText = "";
-        console.log("3b. Answer period ended")
-        console.log("4a. Round started")
-        startRound();
+          console.log("3b. Answer period ended")
+          console.log("4a. Round started")
+          startRound();
+        }
       }
     }
-  }
-
-  synth.setRate(2);
+    synth.setRate(2);
+  
 
 }
 
 function draw() {
-  //mgr.draw();
-  //mgr.showNextScene(game1);
+  if (loadComplete) {
+    //mgr.draw();
+    //mgr.showNextScene(game1);
+    background(10, 140, 220);
+    textAlign(CENTER);
+    textSize(50);
+    if ((canvasHeight / 2) + rouletteTextOffset > canvasHeight) {
+      randomIndex = floor(random(0, Object.keys(CATEGORY).length));
+      text(Object.keys(CATEGORY)[randomIndex], canvasWidth / 2, canvasHeight / 4 + 20);
+      rouletteTextOffset = 0;
+      rate /= 2;
+    } else {
+      text(Object.keys(CATEGORY)[randomIndex], canvasWidth / 2, canvasHeight / 4 + rouletteTextOffset);
+    }
+    rouletteTextOffset += rate;
+  }
 }
 
 function game1() {
