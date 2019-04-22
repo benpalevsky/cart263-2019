@@ -1,21 +1,20 @@
-Proverbial Generation
+Trivia
 ==============
 
-Proverbs are strange beasts of language. They seem to have a call and answer like cadence. *An apple a day keeps the doctor away. A penny saved is a penny earned.* You can really feel the division (and if you can't, I'm driving this point home anyways)-
+It's Trivia! It's physics! It's Trivia meets physics!
 
-A penny saved **deep breath** is a penny earned.
-An apple a day **deep breath** keeps the doctor away.
+Fair warning, I didn't finish this project in time. The scope got away from me. I'm going to submit what I have now, and spend a bit of time cleaning up my code. I'm pleased with my work, but this was much harder to do than I thought. I'll talk about three things in this artist's statement.
 
-I thought it would be fun to start smooshing random proverbs together. Proverbial generation lets call it. Picture a machine which chooses two random proverbs and then makes a proverb sandwich. Not all the sandwiches would be tasty, but at least you're eating them right?
+  1. My intentions for the project
+  2. What I spent my time on
+  3. What I didn't get to.
 
-That's kind of how procedural generation makes me feel sometimes. "Wow I never would have thought to make a banana peel hamburger sandwich but I'm happy I tried it!"
+So this project, in design, was supposed to be a game in which you have to play physics games to answer trivia questions. Like shooting a slingshot at a target, or dropping a pachinko ball into the right basket.
 
-Similarly, I hope you will enjoy sampling these proverbs. *A penny saved keeps the doctor away. The grass is fast. A true friend is many a pang.* Are all great examples of time you will never get back because you spent it reading sentences that seem to have weight and meaning. Oh well!
+In implementation, I unfortunately never got there. I spent a lot of time on managing different states of the application, learning and experimenting with matter.js, and just managing a lot of moving parts. As of this commit, I'm actually a lot closer to making the mini-games. It just took me so long to get a core loop into place.
 
-As it turns out, the **deep breath** part of the proverb kept landing on the verb (third person, singular present) of the phrase. If you use RiTa.js, you can able to deconstruct a phrase into its parts of speech, find out which word is a third person, singular verb, and then take two proverbs, make the incision, and conjoin them!
+So about that core loop- basically it makes a call to a Trivia API, makes a call to a randomPaletteGenerator API, asks you a trivia question, loads up matter.js, you move around all physics'y and stuff, and then you submit your answer. The overall experience is not that great. I give it a C+, and that's being generous.
 
-I'm not really sure why, but I'm both terrified, and in love, with automated/procedurally generated content. I used this project as an attempt to better understand it. And if you want to understand even more, I'd urge you to to read "Something is Wrong on the Internet" by James Bridle. In it, he warns us about the dangers of automated content.
+That said, doing the work was great. Sure my project didn't come together the way I wanted it to, but I feel that if I keep working on this, I could get there. It would take me two more days, I think. Although that's probably wrong. Project scope is difficult (this is one of my main takeaways).
 
-And to him I say: *An elephant never forgets no moss.*
-
-**deep breath** It's going to be okay. It's going to be okay.
+Hopefully the code isn't too painful to read. I'm pleased with how it turned out. 
