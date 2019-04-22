@@ -34,6 +34,7 @@ let onScreenTextSize = 12,
 let rouletteTextOffset = -20;
     rate = 100;
     randomIndex = 0;
+    chosenCategory = 0;
 
 let state = {
   startPeriod : 1,
@@ -161,6 +162,7 @@ function roulette() {
   this.setup = function(){
     console.log("1a. I've started");
     state.startPeriod = 1;
+    getRandomPalette();
   }
 
   this.draw = function(){
@@ -184,6 +186,7 @@ function roulette() {
         if (rate > 0) rate-= 0.01;
         else rate = 0;
         if (rate === 0){
+          chosenCategory = randomIndex + 9;
           setTimeout(function() {
             state.startPeriod = 0;
             mgr.showScene(game1);
@@ -201,7 +204,7 @@ function game1() {
   this.setup = function() {
 
 
-    getRandomTriviaQuestion(CATEGORY.CELEBRITIES, DIFFICULTY.HARD, TYPE.MULTIPLE);
+    getRandomTriviaQuestion(chosenCategory, DIFFICULTY.HARD, TYPE.MULTIPLE);
 
     // create an engine
     engine = Engine.create();
