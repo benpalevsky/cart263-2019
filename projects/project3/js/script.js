@@ -38,6 +38,9 @@ let state = {
   roundPeriod: 0
 }
 
+let player,
+    letterBlocks;
+
 let Engine = Matter.Engine,
   Render = Matter.Render,
   World = Matter.World,
@@ -120,7 +123,7 @@ function setup() {
         if (currentSpokenAnswerIndex < 4) currentSpokenAnswerIndex++;
       } else {
         state.answerPeriod = 0;
-        state.round = 1;
+        state.roundPeriod = 1;
         onScreenText = "";
         console.log("3b. Answer period ended")
         console.log("4a. Round started")
@@ -184,7 +187,29 @@ function game1() {
     text(onScreenText, 10, 40, canvasWidth, canvasHeight);
 
 
+    if (state.roundPeriod === 1){
+      textSize(12);
+      text(answers[0], letterBlocks[0].body.position.x + letterBlocks[0].body.circleRadius, letterBlocks[0].body.position.y+letterBlocks[0].body.circleRadius);
+      textSize(36);
+      text(letters[0], letterBlocks[0].body.position.x, letterBlocks[0].body.position.y);
+
+
+
+      for (var i = 0; i < letterBlocks.length; i++) {
+        var collision = Matter.SAT.collides(player.body, letterBlocks[i].body);
+        if (collision.collided){
+          if (letterBlocks[i].winner === true){
+            console.log("4b: round ended - selection is right");
+          }
+          if (letterBlocks[i].winner === false){
+          console.log("4b: round ended - selection is wrong");
+          }
+        }
+      }
+    }
   }
+
+
 
   this.handleInput = function() {
     //up
@@ -259,18 +284,21 @@ function startRound(){
 
   letterBlocks = [];
   for (var i = 0; i < answers.length; i++) {
+
     letterBlocks.push({
         body: Bodies.circle(random(0, canvasWidth), random(0, canvasHeight), 20, {isStatic: false}),
-        winner: ""
+        text: answers[i],
+        letter: letters[i],
+        winner: (letters[i] === correctLetter)
       }
     )
+
     World.add(engine.world, [
       letterBlocks[i].body
     ]);
   }
-
-
 }
+
 
 
 
