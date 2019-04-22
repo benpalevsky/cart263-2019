@@ -189,9 +189,11 @@ function game1() {
 
     if (state.roundPeriod === 1){
       textSize(12);
-      text(answers[0], letterBlocks[0].body.position.x + letterBlocks[0].body.circleRadius, letterBlocks[0].body.position.y+letterBlocks[0].body.circleRadius);
+      translate(letterBlocks[0].body.position.x, letterBlocks[0].body.position.y);
+      rotate(letterBlocks[0].body.angle);
+      text(answers[0], letterBlocks[0].body.circleRadius, letterBlocks[0].body.circleRadius);
       textSize(36);
-      text(letters[0], letterBlocks[0].body.position.x, letterBlocks[0].body.position.y);
+      text(letters[0], 0, 0);
 
 
 
